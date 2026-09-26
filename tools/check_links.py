@@ -42,7 +42,7 @@ def main():
                     html = fh.read()
                 for link in ATTR.findall(html):
                     link = link.replace("&amp;", "&")
-                    if link.startswith(("#", "mailto:", "javascript:", "data:")) or "'" in link or "+" in link and "'" in link:
+                    if link.startswith(("#", "mailto:", "javascript:", "data:")) or "'" in link:  # skip links built inside scripts
                         continue
                     if link.startswith("http://"):
                         parts = urlsplit(link)

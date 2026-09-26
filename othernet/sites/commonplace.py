@@ -3,7 +3,6 @@
 Folios are kept by guilds and edited on their own schedules, so some are out
 of date. Every folio shows when it was last revised in its Chronicle tab.
 """
-import json
 
 from ..engine import kit, links, svg
 from ..engine.domains import url
@@ -12,10 +11,9 @@ from ..engine.rng import slug, stream, short_hash
 from ..engine.web import esc
 from ..world import culture
 from ..world.calendar import ADate, TODAY, MONTHS, WEEKDAYS
-from ..world.econ import CURRENCY_NAMES
 from ..world.geo import NATIONS, CITIES, CITY, LANDMARKS, cities_of
 from ..world.history import EVENTS, TOPICS
-from ..world.orgs import COMPANIES, COMPANY, PARTIES, SEATS, UNIVERSITIES, GUILDS
+from ..world.orgs import COMPANIES, PARTIES, SEATS, UNIVERSITIES, GUILDS
 from ..world.people import NOTABLES, NOTABLE, HEADS
 from ..world.sports import TEAMS, standings
 from ..world.stories import STORIES
@@ -241,14 +239,14 @@ def build(web, site):
         if c.nation == "VEY":
             refs.append(("Concordat Registry record", links.company_registry(c)))
         if c.domain:
-            refs.append((f"Official site", f"http://{c.domain}/"))
+            refs.append(("Official site", f"http://{c.domain}/"))
         summary = P(f"{c.name} is a {NATIONS[c.nation].demonym} company in the {c.industry.lower()} "
                     f"trade, based in {c.city}. {c.description}")
         kw = {}
         if c.id == "morrowmedia":
             # The folio does not mention the Crier. The Registry does.
-            summary = P(f"Morrow Media Group is a Veylish media company based in Ostmere. It runs the "
-                        f"Morrow portal, one of the most visited pages on the Weave.")
+            summary = P("Morrow Media Group is a Veylish media company based in Ostmere. It runs the "
+                        "Morrow portal, one of the most visited pages on the Weave.")
         if c.id == "gildmere":
             kw = dict(last_edit=ADate(412, 4, 21), notice="This folio concerns a matter before the "
                       "Concordat Assembly.")
@@ -330,8 +328,6 @@ def build(web, site):
             "Saltmarch writes day/month/year (17/8/412). The Holds write day.month.year in HR "
             "(17.8.1292 HR). The Pellucid Isles write the month name first (Gale 17, 412)."))],
         cats=["Topics", "Calendar"], alias=["CR"]))
-    for code, nm in CURRENCY_NAMES.items():
-        pass
 
     # ---- teams, parties, works, institutions ------------------------------------
     table = {r["team"]: i + 1 for i, r in enumerate(standings(ADate(412, 7, 20)))}
@@ -361,12 +357,14 @@ def build(web, site):
                   infobox=[("Author", b.author), ("Published", f"{b.year} CR"), ("Publisher", b.publisher),
                            ("QN", b.qn)], cats=["Books"], alias=[]))
     for a in culture.ARTISTS:
+        if a.id == "nell-hedgecote":
+            continue  # she has a person folio
         albums = [al for al in culture.ALBUMS if al.artist == a.id]
         add(Folio(a.name, "work", P(f"{a.name} is a {a.genre} act from {a.city}, active since {a.formed} CR. "
                                     f"{a.bio}"),
                   sections=[("Albums", P(*[f"{al.title} ({al.release.year})" for al in albums
                                            if al.release <= ADate(412, 3, 1)]))],
-                  cats=["Musicians"], last_edit=ADate(412, 3, 1))) if a.id != "nell-hedgecote" else None
+                  cats=["Musicians"], last_edit=ADate(412, 3, 1)))
     for name, city, founded, dom in UNIVERSITIES:
         add(Folio(name, "institution", P(f"{name} is a place of learning in {city}, founded {founded} CR."),
                   infobox=[("Founded", f"{founded} CR"), ("Place", city)] +

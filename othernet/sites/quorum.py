@@ -1,6 +1,4 @@
 """quorum.fol: questions and answers. The most-voted answer is not always right."""
-from ..engine import kit
-from ..engine.domains import url
 from ..engine.rng import stream, slug
 from ..engine.web import esc
 from ..world.calendar import ADate, TODAY

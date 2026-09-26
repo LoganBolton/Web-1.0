@@ -1,10 +1,10 @@
 """lanternport.hal: Lanternport University."""
-from ..engine import kit, svg, links
+from ..engine import kit, svg
 from ..engine.domains import url
 from ..engine.rng import stream, slug
 from ..engine.web import esc
 from ..world.academia import DEPARTMENTS, STAFF, TOPICS, PAPERS
-from ..world.calendar import ADate, TODAY, WEEKDAYS
+from ..world.calendar import WEEKDAYS
 
 CSS = """
 *{box-sizing:border-box}body{margin:0;font:16px/1.6 'Optima','Candara','Segoe UI',sans-serif;background:#fcfbf7;color:#1c1917}

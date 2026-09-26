@@ -7,7 +7,7 @@ import math
 
 from ..engine import kit, links
 from ..engine.web import esc
-from ..world.calendar import ADate, TODAY
+from ..world.calendar import TODAY
 
 
 def is_prime(n):
@@ -127,7 +127,6 @@ def shell(site, title, body, **kw):
 def build(web, site):
     site.shell = shell
     site.write("/style.css", CSS)
-    by_code = {r[0]: r for r in ROLLS}
     used_by = {}
     for r in ROLLS:
         for u in r[7]:

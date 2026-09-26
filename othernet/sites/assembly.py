@@ -5,7 +5,7 @@ from ..engine import kit, svg, links
 from ..engine.rng import slug
 from ..engine.web import esc
 from ..world.calendar import ADate, TODAY
-from ..world.orgs import PARTIES, SEATS, PROVINCES, COALITION
+from ..world.orgs import PARTIES, SEATS, PROVINCES
 from ..world.politics import DELEGATES, DELEGATE, BILLS, COMMITTEES
 
 HEARING = [
@@ -54,7 +54,6 @@ def hemicycle():
     order = ["canalworkers", "green-moor", "open-ford", "civic-ledger", "hearth-plough"]
     seats = [p for p in order for _ in range(SEATS[p])]
     rows = [(110, 14), (145, 18), (180, 26), (215, 32)]
-    i = 0
     pos = []
     for r, n in rows:
         for k in range(n):

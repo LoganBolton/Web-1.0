@@ -1,5 +1,5 @@
 """reelhouse.ves: the film database. Titles, people, ratings, box office."""
-from ..engine import kit, svg, links
+from ..engine import kit, svg
 from ..engine.rng import stream, slug
 from ..engine.web import esc
 from ..world.calendar import TODAY

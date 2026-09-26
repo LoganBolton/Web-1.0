@@ -2,7 +2,7 @@
 import json
 
 from ..engine import links, kit, svg
-from ..engine.maps import world_map, city_route_line
+from ..engine.maps import world_map
 from ..engine.web import esc
 from ..engine.domains import url
 from ..world.geo import NATIONS, CITIES, CITY, LANDMARKS, cities_of, distance_leagues
@@ -66,9 +66,7 @@ Reach to the north and the Glass Sea to the south"></div>
     # --- nations -----------------------------------------------------------
     rows = []
     for n in NATIONS.values():
-        head = NOTABLE.get(n.head) or NOTABLE[{"VEY": "maelis-ondraker", "SLT": "oriel-casswater",
-                                               "KHR": "harrow-dagna", "PEL": "iselle-marovane",
-                                               "ODD": "skeld-varrakin"}[n.code]]
+        head = NOTABLE[n.head]
         rows.append([f'<a href="/nation/{n.code.lower()}/">{esc(n.name)}</a>',
                      f'<a href="/place/{CITY[n.capital].slug}/">{esc(n.capital)}</a>',
                      f"{n.population:,}", f"{n.area_sq_leagues:,}", f".{n.tld}",

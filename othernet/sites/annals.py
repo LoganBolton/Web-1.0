@@ -1,9 +1,7 @@
 """annals.hal: The Annals, collected papers of the learned halls, plus the Ribbons preprint shelf."""
-from ..engine import kit
 from ..engine.domains import url
 from ..engine.web import esc
 from ..world.academia import PAPERS, DEPARTMENTS, STAFF
-from ..world.calendar import TODAY
 
 DEPT = {d: n for d, n, _ in DEPARTMENTS}
 

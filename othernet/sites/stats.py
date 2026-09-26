@@ -1,6 +1,6 @@
 """stats.pel: the Pellucid Statistical Office. Datasets with tables, charts, and CSV downloads."""
 from ..engine import kit, svg
-from ..engine.rng import stream, slug
+from ..engine.rng import stream
 from ..engine.web import esc
 from ..world.calendar import MONTHS, TODAY
 from ..world.geo import cities_of

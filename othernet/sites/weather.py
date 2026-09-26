@@ -1,7 +1,6 @@
 """weather.vey: the Concordat Weather Office. Forecasts, observations, climate, warnings."""
 from ..engine import kit, svg, links
 from ..engine.maps import world_map
-from ..engine.rng import slug
 from ..engine.web import esc
 from ..world.calendar import ADate, TODAY, MONTHS, date_range
 from ..world.geo import CITIES, NATIONS, monthly_climate
@@ -95,7 +94,7 @@ Ossa {phase_name(op)} ({illumination(op)}% lit), Pith {phase_name(pp)} ({illumin
         f'<div class="warn {w[2]}"><b>{w[2]}: {w[3]}</b>, {w[0].long()} to {w[1].long()}. {esc(w[4])}</div>' for w in active) or
         "<p>No warnings in force.</p>") + "<h2>Earlier this year</h2>" + "".join(
         f'<div class="warn {w[2]}"><b>{w[3]}</b>, {w[0].long()} to {w[1].long()}. {esc(w[4])}</div>' for w in WARNINGS if w[1] < TODAY))
-    site.page("/storms/", "Storm names", f"""<h1>Storm names, 412</h1><p>Storms are named jointly with the Saltmarch Admiralty
+    site.page("/storms/", "Storm names", """<h1>Storm names, 412</h1><p>Storms are named jointly with the Saltmarch Admiralty
 from a list of seabirds. Sixteen storms have been named this year. The next name on the list is <b>Quail</b>.</p><ol>""" +
               "".join(f"<li>{n}</li>" for n in STORMS_412) + "</ol><p>Storm Petrel (7–9 Gale) brought the strongest gust of the year: "
               "27 leagues an hour at the Brineholt Northmole.</p>")

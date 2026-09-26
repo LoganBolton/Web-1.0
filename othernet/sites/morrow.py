@@ -1,7 +1,6 @@
 """morrow.ves: Morrow, the portal most people's slates open to. Owned by Morrow Media, which also owns the Crier."""
-import json
 
-from ..engine import kit, links, svg
+from ..engine import links, svg
 from ..engine.domains import url
 from ..engine.web import esc
 from ..world.calendar import TODAY
@@ -70,7 +69,7 @@ function draw(){{var w=W[s.value];document.getElementById('wx').innerHTML='<p st
 w.fc.map(f=>f[0]+' '+f[4]+' '+Math.round(f[2])+'/'+Math.round(f[3])).join('<br>');try{{localStorage.setItem('morrow-city',s.value);}}catch(e){{}}}}s.onchange=draw;draw();}});</script>
 </body></html>"""
     site.raw_page("/", "Morrow", body)
-    site.raw_page("/about/", "About Morrow", f"""<!doctype html><html><head><meta charset="utf-8"><title>About Morrow</title><link rel="stylesheet" href="/style.css"></head>
+    site.raw_page("/about/", "About Morrow", """<!doctype html><html><head><meta charset="utf-8"><title>About Morrow</title><link rel="stylesheet" href="/style.css"></head>
 <body><div class="grid" style="grid-template-columns:1fr"><div class="box"><h3>About Morrow</h3><p>Morrow has been the start page of the Weave since 395.
 It is run by Morrow Portal, part of Morrow Media Group, Ostmere.</p><p>Headlines are chosen by our editors and by what our readers click.</p>
 <p><a href="/">Back to Morrow</a></p></div></div></body></html>""")

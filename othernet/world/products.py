@@ -10,7 +10,7 @@ from ..engine.rng import stream, slug, pick_weighted
 from .calendar import ADate, TODAY
 from .culture import BOOKS, ALBUMS, ARTIST
 from .econ import convert, NATION_CURRENCY
-from .geo import CITIES, cities_of
+from .geo import cities_of
 from .names import make_name
 from .people import generate_population
 

@@ -1,6 +1,5 @@
 """guildwork.gld: jobs, apprenticeships, and guild placements."""
-from ..engine import kit
-from ..engine.rng import stream, slug
+from ..engine.rng import stream
 from ..engine.web import esc
 from ..world.calendar import ADate, TODAY
 from ..world.econ import NATION_CURRENCY, fmt_money, convert

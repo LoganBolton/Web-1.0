@@ -3,9 +3,9 @@ from ..engine import kit, svg
 from ..engine.rng import stream, slug
 from ..engine.web import esc
 from ..world.addresses import address
-from ..world.calendar import TODAY, WEEKDAYS
+from ..world.calendar import WEEKDAYS
 from ..world.econ import fmt_money, convert
-from ..world.geo import CITIES, CITY
+from ..world.geo import CITIES
 
 MENU = [
     ("Teas", [("Copper Kettle House Blend", 2.40), ("Moor Heather", 2.60), ("Smoked Harbour", 2.80),

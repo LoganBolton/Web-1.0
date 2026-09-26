@@ -115,8 +115,8 @@ def build(web, site):
         site.json(f"/idx/d/{b // BLOCK}.json", block)
     site.json("/idx/meta.json", {"n": N, "block": BLOCK, "priors": priors, "ads": [[k, t, d, u, x] for k, t, d, u, x in ADS]})
     # --- pages ------------------------------------------------------------------------------
-    foot = (f'<footer><a href="/about/">About Lanthorn</a><a href="/help/">Search help</a><a href="/lantern-desk/">Lantern Desk</a>'
-            f'<a href="/advertise/">Advertise</a></footer>')
+    foot = ('<footer><a href="/about/">About Lanthorn</a><a href="/help/">Search help</a><a href="/lantern-desk/">Lantern Desk</a>'
+            '<a href="/advertise/">Advertise</a></footer>')
     site.raw_page("/", "Lanthorn", f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lanthorn</title><link rel="stylesheet" href="/style.css"></head><body><div class="home"><h1>Lant<span>horn</span></h1>
 <form action="/search/"><p><input name="q" autofocus aria-label="Search the Weave"></p><div class="btns" style="text-align:center">

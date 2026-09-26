@@ -1,8 +1,8 @@
 """deephalls.khr: Museum of the Deep Halls, Harrowdeep. Objects, galleries, exhibitions."""
-from ..engine import kit, svg
-from ..engine.rng import stream, slug
+from ..engine import svg
+from ..engine.rng import stream
 from ..engine.web import esc
-from ..world.calendar import ADate, TODAY, HR_OFFSET
+from ..world.calendar import HR_OFFSET
 
 GALLERIES = [("G1", "The First Hall", "Tools and carvings from the founding of Harrowdeep."),
              ("G2", "Lamps of the Deep", "Nine centuries of miners' lamps. Temporary exhibition."),
@@ -100,7 +100,7 @@ lift to the fourth tier.</p><table><tr><td>Anvilday to Hearthday</td><td>9:00 to
 <tr><td>Hollowdays</td><td>closed</td></tr></table><h2>Tickets</h2><table><tr><td>Adult</td><td>6 mk</td></tr><tr><td>Child</td><td>free</td></tr>
 <tr><td>Members of any clan of the Holds</td><td>free on Stilldays</td></tr><tr><td>Visitors from beyond the Holds</td><td>9 mk</td></tr></table>
 <p>The temperature in the lower galleries is about 9 degrees all year. Bring a coat.</p>""")
-    site.page("/exhibitions/", "Exhibitions", f"""<h1>Exhibitions</h1><h2>Lamps of the Deep</h2><p>Until 1.10.1292 HR (1 Dusk 412 CR), gallery G2.
+    site.page("/exhibitions/", "Exhibitions", """<h1>Exhibitions</h1><h2>Lamps of the Deep</h2><p>Until 1.10.1292 HR (1 Dusk 412 CR), gallery G2.
 Includes the lamp that burned in the Deepshaft 9 refuge.</p><h2>Coming: Beyond Frostgate II</h2><p>From 1.1.1293 HR.</p>""")
     site.page("/", "Museum of the Deep Halls", "<h1 style='font-weight:normal'>Nine centuries of the Holds, carved in stone.</h1>"
               "<div class='objs'>" + "".join(f'<div class="obj"><a href="/object/{o["no"]}/"><img src="/img/{o["no"]}.svg" alt=""></a>'

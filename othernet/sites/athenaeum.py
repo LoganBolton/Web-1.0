@@ -1,9 +1,9 @@
 """athenaeum.hal: catalogue of the Ostmere Athenaeum and its branches."""
-from ..engine import kit, links
+from ..engine import kit
 from ..engine.domains import url
-from ..engine.rng import stream, slug
+from ..engine.rng import stream
 from ..engine.web import esc
-from ..world.calendar import TODAY, WEEKDAYS
+from ..world.calendar import TODAY
 from ..world.culture import BOOKS
 
 BRANCHES = [("Central", "Ostmere", "The Stacks, Ostmere OS 7 1", "Anvilday–Stillday 8:00–20:00"),

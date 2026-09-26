@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 from ..engine.rng import stream, slug
 from .calendar import ADate, TODAY
 from .names import Name, make_name
-from .orgs import PARTIES, SEATS, PROVINCES, COALITION
+from .orgs import PARTIES, SEATS, PROVINCES
 from .people import NOTABLE
 
 

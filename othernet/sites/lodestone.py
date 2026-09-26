@@ -1,5 +1,5 @@
 """lodestone.wir: Lodestone, a popular science magazine from Lanternport."""
-from ..engine import kit, links, svg
+from ..engine import kit, svg
 from ..engine.domains import url
 from ..engine.rng import slug
 from ..engine.web import esc

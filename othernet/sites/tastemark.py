@@ -1,10 +1,10 @@
 """tastemark.ves: reviews of places to eat, drink, and sleep."""
-from ..engine import kit, svg, links
+from ..engine import svg, links
 from ..engine.rng import stream, slug
 from ..engine.web import esc
 from ..world.addresses import address
 from ..world.calendar import ADate, TODAY, WEEKDAYS
-from ..world.geo import CITIES, CITY
+from ..world.geo import CITIES
 from ..world.people import generate_population
 
 KINDS = {"restaurant": ["Harbour", "Moor", "Kethren", "Pellish", "Eel house", "Pie shop", "Noodle bar", "Grill"],

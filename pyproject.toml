@@ -1,0 +1,12 @@
+[project]
+name = "othernet"
+version = "0.1.0"
+description = "The Weave: a fictional internet for testing web agents"
+requires-python = ">=3.11"
+
+[tool.ruff]
+line-length = 140
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["F", "E9"]

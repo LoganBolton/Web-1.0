@@ -2,10 +2,10 @@
 import json
 
 from ..engine import kit, svg
-from ..engine.rng import stream, slug
+from ..engine.rng import stream
 from ..engine.web import esc
 from ..world.addresses import address
-from ..world.calendar import ADate, TODAY, MONTHS, date_range
+from ..world.calendar import TODAY, MONTHS, date_range
 from ..world.econ import RATES, CURRENCY_NAMES, CURRENCY_SYMBOL, YEAR_START
 from ..world.geo import CITIES
 

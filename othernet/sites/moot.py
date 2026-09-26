@@ -1,6 +1,6 @@
 """rulings.khr: rulings of the Moot of Holds. Dates are in Hold Reckoning (HR = CR + 880)."""
 from ..engine import kit
-from ..engine.rng import stream, slug
+from ..engine.rng import stream
 from ..engine.web import esc
 from ..world.calendar import ADate, TODAY
 from ..world.names import make_name, KHR_CLANS

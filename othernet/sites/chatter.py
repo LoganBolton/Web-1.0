@@ -1,14 +1,11 @@
 """chatter.fol: short public posts ("chirps"), profiles, tags, and threads."""
-import json
 
-from ..engine import kit, svg, links
-from ..engine.domains import url
-from ..engine.rng import stream, slug
+from ..engine import svg
+from ..engine.rng import stream
 from ..engine.web import esc
 from ..world.calendar import ADate, TODAY, time_str
 from ..world.people import generate_population
 from ..world.sports import MATCHES, TEAM
-from ..world.stories import STORIES
 
 ACCOUNTS = [  # handle, display, bio, verified, joined, followers
     ("vantle", "Vantle", "Makers of the Slate. Support: vantle.ves/support", True, 399, 1_204_000),
@@ -138,7 +135,6 @@ def build(web, site):
     # match chatter
     for m in [m for m in MATCHES if m.played][-40:]:
         u = rng.choice(commoners)
-        winner = m.home if m.home_score > m.away_score else m.away
         chirps.append({"h": u["h"], "d": m.date, "t": 17 * 60 + rng.randint(0, 120), "tags": [],
                        "x": f"{TEAM[m.home].name} {m.home_score}, {TEAM[m.away].name} {m.away_score}. {rng.choice(['What a match.', 'Robbed.', 'Never in doubt.', 'Ref needs spectacles.'])}",
                        "l": rng.randint(0, 80), "r": 0, "re": None})

@@ -4,7 +4,6 @@ from dataclasses import dataclass, field
 from ..engine.rng import stream, slug, pick_weighted
 from .calendar import ADate
 from .names import make_name
-from .people import NOTABLE
 
 # ---------------------------------------------------------------------------
 # Words for titles

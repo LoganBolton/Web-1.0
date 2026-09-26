@@ -3,7 +3,7 @@ from ..engine import kit, svg, links
 from ..engine.rng import slug, stream
 from ..engine.web import esc
 from ..world.calendar import ADate, TODAY
-from ..world.culture import BOOKS, BOOK_GENRES
+from ..world.culture import BOOKS
 
 EVENTS = [
     (ADate(412, 9, 12), "Morwen Reefley in conversation", "Brineholt Playhouse", "Before the opening of the stage "

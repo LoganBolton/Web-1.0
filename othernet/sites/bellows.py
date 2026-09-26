@@ -1,7 +1,6 @@
 """bellows.ves: Bellows Records, an independent label on the Rope Walk."""
-from ..engine import kit, svg, links
+from ..engine import kit, svg
 from ..engine.domains import url
-from ..engine.rng import slug
 from ..engine.web import esc
 from ..world.calendar import TODAY
 from ..world.culture import ARTISTS, ALBUMS, ARTIST, TOUR_412
@@ -29,7 +28,7 @@ def sleeve(al):
     p = [f'<rect width="300" height="300" fill="{pal[0]}"/>']
     for i in range(6):
         p.append(f'<circle cx="150" cy="150" r="{140 - i * 22}" fill="none" stroke="{pal[(i % 4) + 1]}" stroke-width="10"/>')
-    p.append(f'<rect x="0" y="236" width="300" height="64" fill="#000" opacity=".5"/>')
+    p.append('<rect x="0" y="236" width="300" height="64" fill="#000" opacity=".5"/>')
     p.append(svg.text(150, 262, al.title, 20, "#fff", "middle", "bold"))
     p.append(svg.text(150, 286, ARTIST[al.artist].name, 13, "#fff", "middle"))
     return svg.wrap(300, 300, "".join(p))

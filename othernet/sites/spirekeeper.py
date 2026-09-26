@@ -1,5 +1,4 @@
 """spirekeeper.fol: The Spire Log, a lighthouse keeper's daily notes from Saltspire."""
-from ..engine.domains import url
 from ..engine.rings import widget
 from ..engine.rng import stream
 from ..engine.web import esc
@@ -55,7 +54,7 @@ def build(web, site):
                            f'{w["hi"]:.0f}/{w["lo"]:.0f}&deg;<br>Lit {time_str(light_on)}, out {time_str(light_off)}. '
                            f'High water {", ".join(highs)}.<br>{esc(note)}</div>')
         site.page(f"/log/412-{m:02d}/", f"{MONTHS[m - 1]} 412", f"<h2>{MONTHS[m - 1]} 412</h2>" + "".join(reversed(entries)))
-    site.page("/about/", "About the Spire", f"""<h2>About the Spire</h2><p>The Spire at Saltspire is older than the Republic. It was first lit in -120 CR.
+    site.page("/about/", "About the Spire", """<h2>About the Spire</h2><p>The Spire at Saltspire is older than the Republic. It was first lit in -120 CR.
 Keepers have been Keelmouths since. I am the twelfth. I wrote a book about us: Keepers of the Spire (Tidings Press, 399).</p>
 <p>The light shows one white flash every five seconds. Do not confuse it with Harthwick, which is further south and changed its light this year.</p>
 <p>No visitors on the gallery. The shingle on Spire Green is not a beach. The cottage at Spire Point is for sale through Harbourside Homes.</p>""")

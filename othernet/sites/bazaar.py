@@ -1,12 +1,10 @@
 """bazaar.ves: the largest marketplace on the Weave."""
-import json
 
 from ..engine import kit, links, svg
-from ..engine.domains import url
 from ..engine.rng import slug, stream
 from ..engine.web import esc
 from ..world.calendar import TODAY
-from ..world.econ import RATES, CURRENCY_SYMBOL, fmt_money, convert
+from ..world.econ import RATES, fmt_money, convert
 from ..world.products import PRODUCTS, SELLERS, SELLER, CATEGORIES
 
 PER_PAGE = 24

@@ -6,7 +6,7 @@ from ..engine.rng import stream, slug
 from ..engine.web import esc
 from ..world.addresses import STREET_A, STREET_B
 from ..world.calendar import ADate, TODAY
-from ..world.geo import CITIES, cities_of
+from ..world.geo import cities_of
 
 ZONES = {"VEY": ("Inland", 0.45, 0.20), "SLT": ("Saltmarch", 0.90, 0.35), "KHR": ("The Holds", 1.10, 0.45),
          "PEL": ("The Isles", 1.25, 0.55), "ODD": ("Oddavar (by Frostgate, trading season only)", 3.60, 1.20)}
@@ -39,7 +39,7 @@ def shell(site, title, body, **kw):
 
 def stamp_svg(name, value, seed):
     pal = svg.palette(seed)
-    p = [f'<rect width="170" height="210" fill="#fff"/>', '<rect x="4" y="4" width="162" height="202" fill="none" stroke="#ccc" stroke-dasharray="3 3"/>',
+    p = ['<rect width="170" height="210" fill="#fff"/>', '<rect x="4" y="4" width="162" height="202" fill="none" stroke="#ccc" stroke-dasharray="3 3"/>',
          f'<rect x="14" y="14" width="142" height="150" fill="{pal[0]}"/>']
     inner = svg.moons(0.5, 0.45, 142, 150) if "Pith" in name else svg.landscape(seed, "city" if "Bridges" in name else "hills", 142, 150)
     p.append(f'<g transform="translate(14,14)">{inner[inner.index(">") + 1:-6]}</g>')
@@ -93,7 +93,7 @@ var p=z[0]+extra*z[1]+(document.getElementById('sig').checked?1.2:0);document.ge
 ['z','w','sig'].forEach(function(i){{document.getElementById(i).addEventListener('input',go);}});go();</script>""")
     # tracking: deterministic states from the number
     towns = [c.name for c in cities_of("VEY")]
-    site.page("/track/", "Track an item", f"""<h1>Track an item</h1><div class="tool"><p>Tracking numbers look like
+    site.page("/track/", "Track an item", """<h1>Track an item</h1><div class="tool"><p>Tracking numbers look like
 <code>CP412-00-00000</code>.</p><p><input id="n" placeholder="CP412-58-20417" size="24"> <button id="go">Track</button></p><div id="r"></div></div>""",
               scripts=f"""<script>var T={json.dumps(towns)},E={json.dumps(TRACK_EVENTS)};
 document.getElementById('go').onclick=function(){{var v=document.getElementById('n').value.trim().toUpperCase(),m=/^CP412-(\\d\\d)-(\\d{{5}})$/.exec(v),r=document.getElementById('r');
@@ -108,7 +108,7 @@ r.innerHTML='<p>From '+from+' to '+to+'.</p><table>'+rows.reverse().join('')+'</
         cards.append(f'<div><img src="/img/stamp-{slug(name)}.svg" alt="{esc(name)} stamp"><b>{esc(name)}</b><br><small>'
                      f'{"Issue date " + issued.long() if issued > TODAY else "Issued " + issued.long()}. {esc(desc)}</small></div>')
     site.page("/stamps/", "Stamps", f"<h1>Stamps</h1><div class='stamps'>{''.join(cards)}</div>")
-    site.page("/", "Concordat Post", f"""<h1>Concordat Post</h1><div class="tool"><h2>Track an item</h2>
+    site.page("/", "Concordat Post", """<h1>Concordat Post</h1><div class="tool"><h2>Track an item</h2>
 <form action="/track/"><input name="n" placeholder="CP412-00-00000"> <button>Track</button></form></div>
 <p>New stamp: <b>Pith Crossing</b>, on sale from 1 Mire 412. <a href="/stamps/">See all stamps</a>.</p>
 <p>A letter within the Concordat costs 45 pennets for the first weight.</p>""")

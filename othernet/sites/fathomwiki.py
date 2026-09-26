@@ -108,7 +108,6 @@ def build(web, site):
     wiki("Patches", kit.table(["Version", "Date", "Notes"], [[v, d.long(), n] for v, d, n in PATCHES]), cats=["Lists"])
     wiki("Theon Morvenne", "<p>Creator of Fathom, founder of Undertow Games, Lanternport.</p>", cats=["People"], stub=True)
     wiki("Currency", "<p>Fathom uses pearls. Tally Sticks can be exchanged at 12 per pearl since patch 2.4, a nod to Saltmarch's twelve bits.</p>", cats=["Mechanics"])
-    import json
     site.json("/data/pages.json", pages)
     site.page("/wiki/Special:Random", "Random page", "<p>Diving&hellip;</p>", index=False,
               scripts="<script>fetch('/data/pages.json').then(r=>r.json()).then(p=>location.replace('/wiki/'+p[Math.floor(Math.random()*p.length)].replace(/ /g,'_')));</script>")

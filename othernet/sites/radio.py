@@ -1,7 +1,6 @@
 """radiolantern.pel: Radio Lantern schedules and transcripts."""
 from ..engine import kit
-from ..engine.domains import url
-from ..engine.rng import stream, slug
+from ..engine.rng import slug
 from ..engine.web import esc
 from ..world.calendar import WEEKDAYS, TODAY, ADate, time_str
 
@@ -81,7 +80,6 @@ def build(web, site):
     site.write("/style.css", CSS)
     tabs = []
     for i, wd in enumerate(WEEKDAYS):
-        rng = stream("radio", wd)
         rows = []
         for name, host, blurb, start, mins in SHOWS:
             if wd == "Stillday" and name in ("The Morning Wire", "Midday Market"):

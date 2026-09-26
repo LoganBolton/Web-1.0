@@ -1,5 +1,5 @@
 """Drawing the chart of Averra."""
-from ..world.geo import CITIES, CITY, LANDMARKS, NATIONS
+from ..world.geo import CITIES, CITY, NATIONS
 from .svg import wrap, text
 
 LAND = {

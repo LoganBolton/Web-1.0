@@ -1,5 +1,4 @@
 """lexicon.hal: The Veylish Lexicon. Words that a visitor from elsewhere would not know."""
-from ..engine import kit, links
 from ..engine.rng import slug, stream
 from ..engine.web import esc
 from ..world.calendar import TODAY

@@ -58,11 +58,11 @@ def build(web, site):
         site.raw_page(f"/{key}.html", title, page(title, "".join(f"<p>{esc(p)}</p>" for p in ps)))
     k, t, ps = SECRET
     site.raw_page(f"/x/{k}/", t, page(t, "".join(f"<p>{esc(p)}</p>" for p in ps)), index=False)
-    gb = [("Moss", "ADate", "Great site!!! The Kettle star moved last night I SAW IT"),
-          ("anon", "", "You need help."), ("starlamp", "", "Pith is a captured asteroid. Read a book."),
-          ("PithFan99", "", "Crier sent me here. 38% represent!"), ("Ulric's neighbour", "", "Please stop pointing the telescope at my window.")]
+    gb = [("Moss", "Great site!!! The Kettle star moved last night I SAW IT"),
+          ("anon", "You need help."), ("starlamp", "Pith is a captured asteroid. Read a book."),
+          ("PithFan99", "Crier sent me here. 38% represent!"), ("Ulric's neighbour", "Please stop pointing the telescope at my window.")]
     site.raw_page("/guestbook.html", "Guestbook", page("GUESTBOOK", "".join(
-        f"<p><b>{esc(n)}</b> wrote: {esc(x)}</p>" for n, _, x in gb) + "<p><i>Guestbook is read only. Too many 'agents'.</i></p>"))
+        f"<p><b>{esc(n)}</b> wrote: {esc(x)}</p>" for n, x in gb) + "<p><i>Guestbook is read only. Too many 'agents'.</i></p>"))
     body = f"""<p class="blink" style="text-align:center;color:#f00;font-size:22px">!!! {(ADate(412, 9, 3) - TODAY)} DAYS UNTIL THE 'CROSSING' !!!</p>
 <p>Welcome, seeker. This page is about the moon they call <b>Pith</b>, and why it is <b>not what they say it is</b>.</p>
 <p>Start with <a href="/evidence.html">THE EVIDENCE</a>. Then read <a href="/crossing.html">WHAT HAPPENS ON 3 MIRE</a>.</p>

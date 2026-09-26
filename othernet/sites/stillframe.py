@@ -1,12 +1,11 @@
 """stillframe.hal: Stillframe, the archive of the Weave. Snapshots of pages as they used to be,
 including sites that no longer exist (gildmere.ves)."""
-import json
 
-from ..engine import kit
 from ..engine.web import esc
-from ..world.calendar import ADate, TODAY
+from ..world.calendar import ADate
 
-GILDMERE_CSS = "body{font-family:Georgia,serif;background:#f5f0e1;color:#2b2b2b;max-width:760px;margin:0 auto;padding:20px}h1{color:#14532d}nav a{margin-right:12px}"
+# gildmere.ves had its own look; snapshots of it keep a little of it.
+GILDMERE_CSS = ".shot.gw{font-family:Georgia,serif;background:#f5f0e1;color:#2b2b2b}.shot.gw h1{color:#14532d}.shot.gw nav a{margin-right:12px}"
 
 # (domain, path, date, title, html body)
 SNAPSHOTS = [
@@ -79,10 +78,10 @@ def build(web, site):
                     b = b.replace(f'href="/{op}"', f'href="/frames/{other_u}"')
             b = b.replace('href="/"', f'href="/frames/{dom}/"') if f"{dom}/" in by_url else b
             site.raw_page(frame, f"{title} (Stillframe {d.long()})", f"""<!doctype html><html><head><meta charset="utf-8"><title>{esc(title)} [Stillframe {d.long()}]</title>
-<link rel="stylesheet" href="/style.css"><style>.shot{{{GILDMERE_CSS if dom == 'gildmere.ves' else ''}}}</style></head><body>
+<link rel="stylesheet" href="/style.css"><style>{GILDMERE_CSS}</style></head><body>
 <div class="bar">STILLFRAME &middot; http://{esc(u)} as it was on <b>{d.long()}</b> &middot; other snapshots: {others or 'none'} &middot;
 <a href="/frames/{u}">all snapshots</a> &middot; <a href="/">Stillframe home</a>{' &middot; <b>this site no longer exists</b>' if dom == 'gildmere.ves' else ''}</div>
-<div class="shot">{b}</div></body></html>""")
+<div class="shot{" gw" if dom == "gildmere.ves" else ""}">{b}</div></body></html>""")
             index.append({"u": u, "d": fid(d), "f": frame, "t": title})
         site.raw_page(f"/frames/{u}", f"Snapshots of {u}", f"""<!doctype html><html><head><meta charset="utf-8"><title>Snapshots of {esc(u)}</title>
 <link rel="stylesheet" href="/style.css"></head><body><div class="bar"><a href="/">Stillframe</a></div><main><h1>http://{esc(u)}</h1>

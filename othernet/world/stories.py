@@ -7,8 +7,8 @@ The canonical truth lives in `truth` so evals can check against it.
 from dataclasses import dataclass, field
 
 from ..engine.rng import stream, slug
-from .calendar import ADate, TODAY
-from .sports import MATCHES, TEAM, PLAYER, standings
+from .calendar import ADate
+from .sports import MATCHES, TEAM, PLAYER
 from .econ import PRICES, trading_days
 from .orgs import COMPANIES
 

@@ -1,5 +1,5 @@
 """wrenwrites.fol: Wren Writes, Wenna Larkfield's blog of walks, ferries, and small towns."""
-from ..engine import kit, svg, links
+from ..engine import kit, svg
 from ..engine.domains import url
 from ..engine.rings import widget
 from ..engine.rng import stream, slug

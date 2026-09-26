@@ -1,5 +1,4 @@
 """hollowmarket.ves: Hollowmarket Auctions. Sales, lots, and bid histories."""
-import json
 
 from ..engine import kit, svg
 from ..engine.rng import stream, slug

@@ -5,7 +5,7 @@ from ..engine.web import esc
 from ..world.addresses import address
 from ..world.calendar import ADate, TODAY
 from ..world.econ import NATION_CURRENCY, fmt_money, convert
-from ..world.geo import CITIES, CITY
+from ..world.geo import CITIES
 
 TYPES = [("cottage", 1, 3), ("terrace", 2, 4), ("flat", 1, 3), ("townhouse", 3, 5), ("barge", 1, 2),
          ("farmhouse", 3, 6), ("keeper's cottage", 2, 3), ("tier dwelling", 1, 4)]
@@ -51,7 +51,7 @@ def floorplan(seed, beds, area):
     w, h = 560, 360
     p = [f'<rect width="{w}" height="{h}" fill="#fff"/>', f'<rect x="10" y="10" width="{w - 20}" height="{h - 40}" '
          f'fill="none" stroke="#111" stroke-width="4"/>']
-    x, y, row_h = 10, 10, (h - 40) / 2
+    row_h = (h - 40) / 2
     per_row = (len(rooms) + 1) // 2
     for i, (name, size) in enumerate(rooms):
         rw = (w - 20) / per_row

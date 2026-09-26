@@ -37,10 +37,6 @@ def team(team_id):
     return url("vaultball", f"/teams/{team_id}/")
 
 
-def player(player_id):
-    return url("vaultball", f"/players/{player_id}/")
-
-
 def courier_story(story):
     y, m, d = story.date.year, story.date.month, story.date.day
     return url("courier", f"/{y}/{m:02d}/{d:02d}/{story.slug}/")
@@ -54,28 +50,12 @@ def crier_story(story):
     return url("crier", f"/story.html?id={story.id}")
 
 
-def bill(bill_id):
-    return url("assembly", f"/bills/{bill_id}/")
-
-
-def delegate(delegate_id):
-    return url("assembly", f"/delegates/{delegate_id}/")
-
-
-def product(pid):
-    return url("bazaar", f"/item/{pid}/")
-
-
 def film(fid):
     return url("reelhouse", f"/title/{fid}/")
 
 
 def book(bid):
     return url("quillmere", f"/books/{bid}.html")
-
-
-def chatter_user(handle):
-    return url("chatter", f"/@{handle}")
 
 
 def lemma(code):

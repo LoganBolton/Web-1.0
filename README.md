@@ -19,7 +19,7 @@ date, a highly voted answer is incorrect).
 
 ## Quick start
 
-Requires Python 3.10+ and nothing else.
+Needs only Python 3 (tested on 3.11), no packages.
 
 ```bash
 python -m othernet.build          # writes ./web (the sites) and ./meta (ground truth), ~7s

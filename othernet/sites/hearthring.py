@@ -1,7 +1,6 @@
 """hearthring.fol: a hand-kept directory of the Weave, plus the webrings."""
 import json
 
-from ..engine import kit
 from ..engine.domains import SITES, url
 from ..engine.rings import RINGS
 from ..engine.rng import stream, slug

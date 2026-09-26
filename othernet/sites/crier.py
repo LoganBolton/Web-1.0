@@ -1,10 +1,9 @@
 """thecrier.wir: The Crier, a tabloid. Everything is rendered by script from JSON."""
-import json
 
 from ..engine import svg
 from ..engine.rng import stream
 from ..engine.web import esc
-from ..world.calendar import ADate, TODAY, MONTHS
+from ..world.calendar import ADate, TODAY
 from ..world.stories import ALL_STORIES
 
 GOSSIP = [
@@ -90,7 +89,7 @@ def build(web, site):
 
     card_js = """function card(s){return '<div class="card"><img src="'+s.img+'" alt=""><div><div class="date">'+esc(s.d)+'</div><h2><a href="/story.html?id='+s.id+'">'+esc(s.h)+'</a></h2><p>'+esc(s.p[0]).slice(0,160)+'...</p></div></div>';}"""
     site.raw_page("/", "The Crier", page("The Crier - SHOUTING THE NEWS", card_js +
-                  "document.getElementById('app').innerHTML=feed.stories.concat(feed.gossip).sort(function(a,b){return 0;}).map(card).join('');"),
+                  "document.getElementById('app').innerHTML=feed.stories.concat(feed.gossip).map(card).join('');"),
                   index=True)
     site.raw_page("/gossip.html", "Gossip", page("Gossip - The Crier", card_js +
                   "document.getElementById('app').innerHTML='<h1>GOSSIP</h1>'+feed.gossip.map(card).join('');"))

@@ -256,7 +256,7 @@ def product(kind, seed, label=None, w=300, h=300):
     main, accent = rng.choice(pal[:3]), rng.choice(pal[2:])
     bg = "#f7f7f5"
     p = [f'<rect width="{w}" height="{h}" fill="{bg}"/>',
-         f'<ellipse cx="150" cy="262" rx="95" ry="12" fill="#e2e2dd"/>']
+         '<ellipse cx="150" cy="262" rx="95" ry="12" fill="#e2e2dd"/>']
     k = kind
     if k in ("kettle", "teapot"):
         p += [f'<ellipse cx="150" cy="180" rx="80" ry="72" fill="{main}"/>',
@@ -269,14 +269,14 @@ def product(kind, seed, label=None, w=300, h=300):
               f'<ellipse cx="150" cy="235" rx="60" ry="18" fill="{main}"/>',
               '<circle cx="150" cy="100" r="16" fill="#fff5b8"/>']
     elif k in ("slate", "loom"):
-        p += [f'<rect x="95" y="40" width="110" height="210" rx="16" fill="#1f2937"/>',
+        p += ['<rect x="95" y="40" width="110" height="210" rx="16" fill="#1f2937"/>',
               f'<rect x="103" y="54" width="94" height="170" rx="6" fill="{main}"/>',
               '<circle cx="150" cy="236" r="6" fill="#6b7280"/>']
     elif k in ("book",):
         p += [f'<rect x="85" y="50" width="130" height="190" fill="{main}"/>',
               f'<rect x="85" y="50" width="14" height="190" fill="{accent}"/>',
-              f'<rect x="110" y="90" width="90" height="4" fill="#fff"/>',
-              f'<rect x="110" y="102" width="70" height="4" fill="#fff"/>']
+              '<rect x="110" y="90" width="90" height="4" fill="#fff"/>',
+              '<rect x="110" y="102" width="70" height="4" fill="#fff"/>']
     elif k in ("boots", "shoes"):
         p += [f'<path d="M70,90 h60 v110 h90 q20,0 20,30 v10 h-170 z" fill="{main}"/>',
               f'<rect x="70" y="225" width="170" height="16" fill="{accent}"/>']
@@ -297,7 +297,7 @@ def product(kind, seed, label=None, w=300, h=300):
     elif k in ("clock", "watch"):
         p += [f'<circle cx="150" cy="150" r="95" fill="{main}"/>',
               '<circle cx="150" cy="150" r="80" fill="#fffdf5"/>',
-              f'<line x1="150" y1="150" x2="150" y2="90" stroke="#222" stroke-width="5"/>',
+              '<line x1="150" y1="150" x2="150" y2="90" stroke="#222" stroke-width="5"/>',
               f'<line x1="150" y1="150" x2="195" y2="165" stroke="{accent}" stroke-width="4"/>']
     elif k in ("record",):
         p += ['<circle cx="150" cy="150" r="100" fill="#111"/>',

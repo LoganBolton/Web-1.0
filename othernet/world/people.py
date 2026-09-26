@@ -3,7 +3,7 @@ from dataclasses import dataclass, field
 
 from ..engine.rng import stream, slug
 from .calendar import ADate, TODAY
-from .geo import CITIES, cities_of, CITY
+from .geo import cities_of
 from .names import Name, make_name, make_handle
 
 

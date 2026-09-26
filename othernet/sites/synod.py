@@ -4,7 +4,7 @@ Oddavar counts years of the Flame (FR). The Synod does not publish the
 conversion; a visitor has to work it out from dates given in both styles.
 """
 from ..engine.web import esc
-from ..world.calendar import ADate, TODAY
+from ..world.calendar import ADate
 
 FR_OFFSET = 1400  # FR = CR + 1400, never stated outright
 

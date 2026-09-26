@@ -1,6 +1,6 @@
 """tallowboards.fol: the Tallow Boards, an old message board. The Back Room needs a password."""
 from ..engine import kit, paywall
-from ..engine.rng import stream, slug
+from ..engine.rng import stream
 from ..engine.web import esc
 from ..world.calendar import ADate, TODAY, time_str
 from ..world.people import generate_population

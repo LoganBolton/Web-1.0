@@ -1,5 +1,4 @@
 """Daily weather for every city in 412 CR, plus a five-day forecast from TODAY."""
-import math
 
 from ..engine.rng import stream
 from .calendar import ADate, TODAY, date_range

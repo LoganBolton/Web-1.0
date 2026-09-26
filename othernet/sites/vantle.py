@@ -1,9 +1,9 @@
 """vantle.ves: Vantle, makers of the Slate. Products, support, releases, recall."""
 from ..engine import kit, svg, links
 from ..engine.domains import url
-from ..engine.rng import stream, slug
+from ..engine.rng import slug
 from ..engine.web import esc
-from ..world.calendar import ADate, TODAY
+from ..world.calendar import ADate
 
 PRODUCTS = [
     ("slate-7", "Slate 7", ADate(412, 8, 1), "1,299 cr (64 weaves) / 1,549 cr (128 weaves)",

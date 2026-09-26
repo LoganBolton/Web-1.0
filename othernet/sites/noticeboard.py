@@ -1,9 +1,7 @@
 """noticeboard.fol: classified ads, lost and found, rooms, and personals."""
-from ..engine import kit
-from ..engine.rng import stream, slug
+from ..engine.rng import stream
 from ..engine.web import esc
 from ..world.calendar import ADate, TODAY
-from ..world.geo import CITIES
 from ..world.people import generate_population
 
 BOARDS = {"for-sale": "For sale", "wanted": "Wanted", "lost-found": "Lost and found", "rooms": "Rooms and moorings",

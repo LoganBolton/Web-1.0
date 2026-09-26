@@ -1,7 +1,7 @@
 """weft.gld: the Weft programming language for looms. Docs, reference, releases, and a tiny playground."""
 from ..engine import kit
 from ..engine.web import esc
-from ..world.calendar import ADate, TODAY
+from ..world.calendar import ADate
 
 KEYWORDS = [
     ("say", "Print a value.", 'say "hello"', "Weft 3. In Weft 2 this was <code>emit</code>."),

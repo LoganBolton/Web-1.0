@@ -1,8 +1,7 @@
 """vaultball.ves: the Vaultball Premier Circuit. Table, fixtures, results, clubs, players."""
-from ..engine import kit, svg, links
-from ..engine.rng import slug
+from ..engine import kit
 from ..engine.web import esc
-from ..world.calendar import ADate, TODAY
+from ..world.calendar import TODAY
 from ..world.sports import TEAMS, TEAM, PLAYER, MATCHES, standings, FINAL_DATE
 
 CSS = """

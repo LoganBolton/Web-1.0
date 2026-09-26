@@ -7,9 +7,9 @@ from ..world.calendar import ADate, TODAY, time_str
 from ..world.econ import PRICES, trading_days, fmt_money
 from ..world.orgs import COMPANIES
 from ..world.sky import tides
-from ..world.sports import MATCHES, TEAM, standings
+from ..world.sports import TEAM, standings
 from ..world.stories import ALL_STORIES, byline
-from ..world.weather import observed, forecast, ICON
+from ..world.weather import observed, ICON
 
 SECTIONS = {"politics": "Republic", "world": "The Reach", "business": "Markets & Harbour",
             "science": "Learning", "sport": "Vaultball", "culture": "Culture", "crime": "Courts",

@@ -2,7 +2,7 @@
 from ..engine import kit, svg, links
 from ..engine.rng import stream
 from ..engine.web import esc
-from ..world.calendar import ADate, TODAY, MONTHS
+from ..world.calendar import ADate
 from ..world.econ import PRICES, trading_days, tally_to_str
 from ..world.geo import NATIONS
 from ..world.orgs import COMPANIES
@@ -134,7 +134,6 @@ def build(web, site):
 old Salt Hall. Prices are quoted in tallies and bits (twelve bits to the tally). Trading runs Anvilday to Hearthday, 9:00 to
 15:30 Brineholt time. The Exchange is shut on Stilldays and Hollowdays.</p><p>Companies from any nation may list. Veylish
 companies must also file with the Concordat Registry.</p>""")
-    movers = sorted(rows, key=lambda r: r[4])
     site.page("/", "Market summary", f"""<h1>Market summary, {last.weekday} {last.salt()}</h1>
 <p class="big">B20 {idx[last]:.1f}</p>{kit.table(["Ticker", "Company", "Close", "Decimal", "Day", "Year", "Value (t)"], rows, raw=True)}""")
     site.fact("exchange-gldw-stake-sold", "On what date did Sallow Fen Holdings sell its 12% stake in Gildmere Works, "

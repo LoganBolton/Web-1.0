@@ -1,10 +1,8 @@
 """observatory.pel: Lanternport Observatory. Moons, tides, and sky events."""
-import json
 
-from ..engine import kit, svg, links
+from ..engine import kit, svg
 from ..engine.web import esc
-from ..world.calendar import ADate, TODAY, MONTHS, month_days, time_str
-from ..world.geo import CITY
+from ..world.calendar import TODAY, MONTHS, month_days, time_str
 from ..world.sky import phase, phase_name, illumination, moonrise, tides, PORTS, SKY_EVENTS, OSSA_PERIOD, PITH_PERIOD
 
 CROSSING_TIMES = [("Lanternport", "21:14", "full"), ("Marrowby", "21:15", "full"), ("Shellcombe", "21:13", "full"),

@@ -1,9 +1,8 @@
 """inkling.fol: Inkling, a webcomic about a squid who works at a library. Hover text carries extra jokes."""
 from ..engine import svg
-from ..engine.domains import url
 from ..engine.rings import widget
 from ..engine.web import esc
-from ..world.calendar import ADate, TODAY
+from ..world.calendar import ADate
 
 # title, [panel lines], hover text
 STRIPS = [
@@ -53,19 +52,19 @@ def build(web, site):
             p = f"/comics/{i:03d}-{k + 1}.svg"
             site.write(p, svg.comic_panel(f"ink{i}-{k}", lines))
             imgs += f'<img src="{p}" alt="Panel {k + 1}" title="{esc(hover) if k == len(panels) - 1 else ""}">'
-        nav = (f'<nav><a href="/comic/1/">|&lt; First</a>' + (f'<a href="/comic/{i - 1}/">&lt; Prev</a>' if i > 1 else "")
-               + f'<a href="/random/">Random</a>' + (f'<a href="/comic/{i + 1}/">Next &gt;</a>' if i < n else "") + f'<a href="/comic/{n}/">Last &gt;|</a></nav>')
+        nav = ('<nav><a href="/comic/1/">|&lt; First</a>' + (f'<a href="/comic/{i - 1}/">&lt; Prev</a>' if i > 1 else "")
+               + '<a href="/random/">Random</a>' + (f'<a href="/comic/{i + 1}/">Next &gt;</a>' if i < n else "") + f'<a href="/comic/{n}/">Last &gt;|</a></nav>')
         body = f"<h2>#{i}: {esc(title)}</h2><p class='date'>{d.long()}</p><div class='strip'>{imgs}</div>{nav}<p><small>(hover over the last panel)</small></p>"
         site.raw_page(f"/comic/{i}/", f"Inkling #{i}: {title}", page(f"Inkling #{i}: {title}", body))
     site.raw_page("/archive/", "Archive", page("Inkling: archive", "<h2>Archive</h2>" + "".join(
         f'<p><a href="/comic/{i}/">#{i}: {esc(t)}</a></p>' for i, (t, _, _) in enumerate(STRIPS, start=1))))
     site.raw_page("/random/", "Random", f"""<!doctype html><script>location.replace('/comic/'+(1+Math.floor(Math.random()*{n}))+'/');</script>""", index=False)
-    site.raw_page("/about/", "About", page("About Inkling", f"<p>Inkling is drawn by a librarian in Lanternport who would rather not say which library. "
-                                                           f"New strips every ninth day. Squids are not allowed in real libraries.</p>"))
-    site.raw_page("/", "Inkling", page("Inkling", f'<p>Latest: <a href="/comic/{n}/">#{n}</a></p>' + open_last(site, n)))
+    site.raw_page("/about/", "About", page("About Inkling", "<p>Inkling is drawn by a librarian in Lanternport who would rather not say which library. "
+                                                           "New strips every ninth day. Squids are not allowed in real libraries.</p>"))
+    site.raw_page("/", "Inkling", page("Inkling", f'<p>Latest: <a href="/comic/{n}/">#{n}</a></p>' + latest_panel(n)))
     site.fact("inkling-cookery", "According to the hover text of the Inkling comic 'Shelving', where does the Athenaeum shelve cookery?",
               "in the 300s", "/comic/1/", how="hover")
 
 
-def open_last(site, n):
+def latest_panel(n):
     return f'<p><a href="/comic/{n}/"><img src="/comics/{n:03d}-1.svg" alt="" width="300"></a></p>'

@@ -1,9 +1,9 @@
 """registry.vey: the Concordat Registry of companies. Search, officers, filings, holdings."""
-from ..engine import kit, links
+from ..engine import kit
 from ..engine.rng import stream, slug
 from ..engine.web import esc
 from ..world.addresses import address
-from ..world.calendar import ADate, TODAY
+from ..world.calendar import ADate
 from ..world.geo import cities_of
 from ..world.names import make_name
 from ..world.orgs import COMPANIES, COMPANY
