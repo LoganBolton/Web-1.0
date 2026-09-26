@@ -40,7 +40,7 @@ HAND = [  # handle, date, time(min), text, tags, likes
     ("droversbank", ADate(412, 8, 13), 10 * 60, "Warning: @drovers_help_desk is NOT us. We will never ask for your pass code. More at drovers.ves/security", ["Drovers"], 4_400),
     ("brineholt_trams", ADate(412, 8, 12), 7 * 60 + 10, "Harbour Line: full service has resumed as of 07:10 this morning. Thank you for your patience after Storm Petrel.", ["StormPetrel"], 910),
     ("brineholt_trams", ADate(412, 8, 9), 5 * 60 + 40, "All Harbour Line and Stair services are suspended this morning because of storm damage. Replacement coaches from Harbour Street.", ["StormPetrel"], 1_200),
-    ("weather_office", ADate(412, 8, 7), 16 * 60, "RED WARNING: Storm Petrel. Gusts over 25 leagues an hour on the Grey Reach coast from tonight. Stay away from sea walls.", ["StormPetrel"], 6_700),
+    ("weather_office", ADate(412, 8, 7), 16 * 60, "RED WARNING: Storm Petrel. Gusts over 25 leagues an hour on the Grey Reach coast from tonight. Stay away from sea walls. Details: snip.ves/petrel", ["StormPetrel"], 6_700),
     ("spirekeeper", ADate(412, 8, 9), 23 * 60 + 50, "Storm took the weather vane off the Spire. First time since 377. The light kept going. It always does.", ["StormPetrel"], 2_310),
     ("spirekeeper", ADate(412, 8, 11), 8 * 60, "Some singer's people rang to ask if they could still play on Spire Green. The Green is under two ells of shingle. No.", [], 5_020),
     ("nell_hedgecote", ADate(412, 8, 8), 18 * 60, "Saltspire, I'm so sorry. The storm wins this one. The Spire Green show on 10 Gale is cancelled. Refunds where you bought.", ["NinthBridge", "StormPetrel"], 9_900),
@@ -52,7 +52,9 @@ HAND = [  # handle, date, time(min), text, tags, likes
     ("lanthorn", ADate(412, 4, 3), 9 * 60, "The Lamp update is live. Pages with more lanterns rise. Small sites can ask to be added through the Lantern Desk.", ["LampUpdate"], 900),
     ("wrenwrites", ADate(412, 4, 9), 19 * 60, "My blog has vanished from Lanthorn since the Lamp update. It's still there. You just have to know where. Hearthring still lists it.", ["LampUpdate"], 612),
     ("oriel_tidemaster", ADate(412, 3, 18), 12 * 60, "The harbour levy rises to four bits a ton from 1 Bloom. Every bit goes to the new Northmole sea wall.", [], 1_100),
-    ("courier_news", ADate(412, 6, 30), 7 * 60, "Registry filings show a company run by the Canal Minister's sister owned 12% of Gildmere Works.", ["CanalGate"], 5_600),
+    ("courier_news", ADate(412, 6, 30), 7 * 60, "Registry filings show a company run by the Canal Minister's sister owned 12% of Gildmere Works. The filing: snip.ves/c4nal", ["CanalGate"], 5_600),
+    ("wrenwrites", ADate(412, 7, 1), 21 * 60, "Gildmere Works quietly took down its whole Weave site. Stillframe kept a copy, including the staff page: snip.ves/go", ["CanalGate"], 402),
+    ("ossawatcher", ADate(412, 8, 2), 2 * 60, "Even the Crier's readers know. 38 per cent! snip.ves/poll", ["PithCrossing"], 12),
     ("hammers_fc", ADate(412, 8, 12), 17 * 60, "Captain Ketta signs on for two more years. Stone remembers.", ["Hammers"], 8_020),
 ]
 TEMPLATES = {

@@ -516,9 +516,10 @@ def banner(seed, headline, sub="", w=728, h=90):
     pal = palette(seed)
     p = [f'<rect width="{w}" height="{h}" fill="{pal[0]}"/>',
          f'<circle cx="{w - 60}" cy="{h / 2}" r="{h}" fill="{pal[2]}" opacity=".5"/>',
-         text(20, h / 2 + 2, headline, 26 if len(headline) < 30 else 20, "#fff", weight="bold"),
+         text(20, h / 2 + 2, headline, min(26, int((w - 40) / max(1, len(headline)) * 1.7)), "#fff", weight="bold"),
          text(20, h / 2 + 26, sub, 13, pal[4] if len(pal) > 4 else "#fff")]
     if rng.random() < 0.5:
-        p.append(f'<rect x="{w - 150}" y="{h / 2 - 18}" width="120" height="36" rx="18" fill="{pal[3]}"/>')
-        p.append(text(w - 90, h / 2 + 5, "Click now", 14, "#111", "middle", "bold"))
+        by = h / 2 - 18 if w >= 500 else h - 56
+        p.append(f'<rect x="{w - 150}" y="{by}" width="120" height="36" rx="18" fill="{pal[3]}"/>')
+        p.append(text(w - 90, by + 23, "Click now", 14, "#111", "middle", "bold"))
     return wrap(w, h, "".join(p))

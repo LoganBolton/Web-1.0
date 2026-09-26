@@ -1,0 +1,542 @@
+[
+ {
+  "key": "lanthorn",
+  "domain": "lanthorn.ves",
+  "name": "Lanthorn",
+  "category": "Search",
+  "nation": "PEL",
+  "indexed_by_lanthorn": false,
+  "description": "Search the Weave by lantern rank.",
+  "pages": 6
+ },
+ {
+  "key": "hearthring",
+  "domain": "hearthring.fol",
+  "name": "Hearthring",
+  "category": "Directories",
+  "nation": "VEY",
+  "indexed_by_lanthorn": true,
+  "description": "A hand-kept directory of the Weave, sorted by people, not engines.",
+  "pages": 42
+ },
+ {
+  "key": "morrow",
+  "domain": "morrow.ves",
+  "name": "Morrow",
+  "category": "Portals",
+  "nation": "VEY",
+  "indexed_by_lanthorn": true,
+  "description": "Your morning on the Weave: headlines, weather, rates, and links.",
+  "pages": 2
+ },
+ {
+  "key": "snip",
+  "domain": "snip.ves",
+  "name": "snip.ves",
+  "category": "Tools",
+  "nation": "SLT",
+  "indexed_by_lanthorn": false,
+  "description": "Short links for long threads.",
+  "pages": 18
+ },
+ {
+  "key": "stillframe",
+  "domain": "stillframe.hal",
+  "name": "Stillframe",
+  "category": "Archives",
+  "nation": "PEL",
+  "indexed_by_lanthorn": true,
+  "description": "The Weave, as it used to be. Snapshots of pages since 401.",
+  "pages": 34
+ },
+ {
+  "key": "commonplace",
+  "domain": "commonplace.hal",
+  "name": "The Commonplace",
+  "category": "Reference",
+  "nation": "VEY",
+  "indexed_by_lanthorn": true,
+  "description": "The shared commonplace book of Averra, kept by the learned guilds.",
+  "pages": 300
+ },
+ {
+  "key": "numerary",
+  "domain": "numerary.gld",
+  "name": "Numerary",
+  "category": "Reference",
+  "nation": "PEL",
+  "indexed_by_lanthorn": true,
+  "description": "Rolls of proven results, kept by the Guild of Numerists.",
+  "pages": 26
+ },
+ {
+  "key": "quorum",
+  "domain": "quorum.fol",
+  "name": "Quorum",
+  "category": "Community",
+  "nation": "VEY",
+  "indexed_by_lanthorn": true,
+  "description": "Ask a question. Let the quorum decide.",
+  "pages": 244
+ },
+ {
+  "key": "lexicon",
+  "domain": "lexicon.hal",
+  "name": "The Veylish Lexicon",
+  "category": "Reference",
+  "nation": "VEY",
+  "indexed_by_lanthorn": true,
+  "description": "Words of Veylish and where they came from.",
+  "pages": 74
+ },
+ {
+  "key": "observatory",
+  "domain": "observatory.pel",
+  "name": "Lanternport Observatory",
+  "category": "Science",
+  "nation": "PEL",
+  "indexed_by_lanthorn": true,
+  "description": "Moons, tides, and the night sky from the oldest observatory in Averra.",
+  "pages": 16
+ },
+ {
+  "key": "chartroom",
+  "domain": "chartroom.ves",
+  "name": "Chartroom",
+  "category": "Maps",
+  "nation": "VEY",
+  "indexed_by_lanthorn": true,
+  "description": "Atlas of Averra from the Guild of Cartographers.",
+  "pages": 40
+ },
+ {
+  "key": "courier",
+  "domain": "ostmerecourier.wir",
+  "name": "The Ostmere Courier",
+  "category": "News",
+  "nation": "VEY",
+  "indexed_by_lanthorn": true,
+  "description": "The Concordat's paper of record since 190 CR.",
+  "pages": 220
+ },
+ {
+  "key": "tidings",
+  "domain": "tidings.slt",
+  "name": "Brineholt Tidings",
+  "category": "News",
+  "nation": "SLT",
+  "indexed_by_lanthorn": true,
+  "description": "News of the Republic and the Reach.",
+  "pages": 200
+ },
+ {
+  "key": "crier",
+  "domain": "thecrier.wir",
+  "name": "The Crier",
+  "category": "News",
+  "nation": "VEY",
+  "indexed_by_lanthorn": true,
+  "description": "SHOUTING THE NEWS SINCE 401",
+  "pages": 5
+ },
+ {
+  "key": "lodestone",
+  "domain": "lodestone.wir",
+  "name": "Lodestone",
+  "category": "Science",
+  "nation": "PEL",
+  "indexed_by_lanthorn": true,
+  "description": "Science for the curious.",
+  "pages": 25
+ },
+ {
+  "key": "radio",
+  "domain": "radiolantern.pel",
+  "name": "Radio Lantern",
+  "category": "Media",
+  "nation": "PEL",
+  "indexed_by_lanthorn": false,
+  "description": "Broadcasting from Observatory Hill.",
+  "pages": 18
+ },
+ {
+  "key": "bazaar",
+  "domain": "bazaar.ves",
+  "name": "Bazaar",
+  "category": "Shopping",
+  "nation": "VEY",
+  "indexed_by_lanthorn": true,
+  "description": "Everything, from everywhere, to your door.",
+  "pages": 1642
+ },
+ {
+  "key": "emberline",
+  "domain": "emberline.ves",
+  "name": "Emberline",
+  "category": "Travel",
+  "nation": "SLT",
+  "indexed_by_lanthorn": true,
+  "description": "Ferries and airships across the Glass Sea and the Grey Reach.",
+  "pages": 36
+ },
+ {
+  "key": "drovers",
+  "domain": "drovers.ves",
+  "name": "Drovers' Bank",
+  "category": "Finance",
+  "nation": "VEY",
+  "indexed_by_lanthorn": true,
+  "description": "Banking since 211 CR.",
+  "pages": 22
+ },
+ {
+  "key": "hollowmarket",
+  "domain": "hollowmarket.ves",
+  "name": "Hollowmarket",
+  "category": "Shopping",
+  "nation": "VEY",
+  "indexed_by_lanthorn": true,
+  "description": "Auctions of antiques, looms, and curiosities.",
+  "pages": 113
+ },
+ {
+  "key": "hearthfind",
+  "domain": "hearthfind.ves",
+  "name": "Hearthfind",
+  "category": "Property",
+  "nation": "VEY",
+  "indexed_by_lanthorn": true,
+  "description": "Find a hearth to call your own.",
+  "pages": 326
+ },
+ {
+  "key": "vantle",
+  "domain": "vantle.ves",
+  "name": "Vantle",
+  "category": "Technology",
+  "nation": "VEY",
+  "indexed_by_lanthorn": true,
+  "description": "Makers of the Slate.",
+  "pages": 23
+ },
+ {
+  "key": "copperkettle",
+  "domain": "copperkettle.ves",
+  "name": "The Copper Kettle",
+  "category": "Food",
+  "nation": "VEY",
+  "indexed_by_lanthorn": true,
+  "description": "Tea rooms since 389.",
+  "pages": 38
+ },
+ {
+  "key": "quillmere",
+  "domain": "quillmere.ves",
+  "name": "Quillmere Press",
+  "category": "Books",
+  "nation": "VEY",
+  "indexed_by_lanthorn": true,
+  "description": "Publishers and booksellers since 244 CR.",
+  "pages": 75
+ },
+ {
+  "key": "tastemark",
+  "domain": "tastemark.ves",
+  "name": "Tastemark",
+  "category": "Reviews",
+  "nation": "SLT",
+  "indexed_by_lanthorn": true,
+  "description": "Honest reviews of places to eat, drink, and sleep.",
+  "pages": 481
+ },
+ {
+  "key": "noticeboard",
+  "domain": "noticeboard.fol",
+  "name": "The Noticeboard",
+  "category": "Classifieds",
+  "nation": "VEY",
+  "indexed_by_lanthorn": false,
+  "description": "Pins, notes, and wanted ads.",
+  "pages": 101
+ },
+ {
+  "key": "exchange",
+  "domain": "exchange.slt",
+  "name": "Brineholt Exchange",
+  "category": "Finance",
+  "nation": "SLT",
+  "indexed_by_lanthorn": true,
+  "description": "Share prices and filings of listed companies.",
+  "pages": 45
+ },
+ {
+  "key": "registry",
+  "domain": "registry.vey",
+  "name": "Concordat Registry",
+  "category": "Government",
+  "nation": "VEY",
+  "indexed_by_lanthorn": true,
+  "description": "Public records of companies in the Concordat of Veyl.",
+  "pages": 523
+ },
+ {
+  "key": "assembly",
+  "domain": "assembly.vey",
+  "name": "Concordat Assembly",
+  "category": "Government",
+  "nation": "VEY",
+  "indexed_by_lanthorn": true,
+  "description": "Delegates, bills, and votes of the Concordat Assembly.",
+  "pages": 130
+ },
+ {
+  "key": "weather",
+  "domain": "weather.vey",
+  "name": "Concordat Weather Office",
+  "category": "Weather",
+  "nation": "VEY",
+  "indexed_by_lanthorn": true,
+  "description": "Forecasts and climate records.",
+  "pages": 92
+ },
+ {
+  "key": "tramways",
+  "domain": "tramways.slt",
+  "name": "Brineholt Tramways",
+  "category": "Transport",
+  "nation": "SLT",
+  "indexed_by_lanthorn": true,
+  "description": "Trams, funiculars, and service updates.",
+  "pages": 23
+ },
+ {
+  "key": "moot",
+  "domain": "rulings.khr",
+  "name": "Moot Rulings",
+  "category": "Government",
+  "nation": "KHR",
+  "indexed_by_lanthorn": false,
+  "description": "Rulings of the Moot of Holds and the clan courts.",
+  "pages": 49
+ },
+ {
+  "key": "stats",
+  "domain": "stats.pel",
+  "name": "Pellucid Statistical Office",
+  "category": "Government",
+  "nation": "PEL",
+  "indexed_by_lanthorn": true,
+  "description": "Numbers about the Isles, free to all.",
+  "pages": 10
+ },
+ {
+  "key": "post",
+  "domain": "post.vey",
+  "name": "Concordat Post",
+  "category": "Government",
+  "nation": "VEY",
+  "indexed_by_lanthorn": true,
+  "description": "Postcodes, postage, and parcel tracking.",
+  "pages": 15
+ },
+ {
+  "key": "patents",
+  "domain": "patentrolls.gld",
+  "name": "Patent Rolls",
+  "category": "Reference",
+  "nation": "VEY",
+  "indexed_by_lanthorn": true,
+  "description": "The rolls of the Guild of Inventors.",
+  "pages": 528
+ },
+ {
+  "key": "university",
+  "domain": "lanternport.hal",
+  "name": "Lanternport University",
+  "category": "Education",
+  "nation": "PEL",
+  "indexed_by_lanthorn": true,
+  "description": "Light is owed to all.",
+  "pages": 149
+ },
+ {
+  "key": "annals",
+  "domain": "annals.hal",
+  "name": "The Annals",
+  "category": "Science",
+  "nation": "PEL",
+  "indexed_by_lanthorn": true,
+  "description": "Collected papers of the learned halls.",
+  "pages": 236
+ },
+ {
+  "key": "athenaeum",
+  "domain": "athenaeum.hal",
+  "name": "The Athenaeum",
+  "category": "Libraries",
+  "nation": "VEY",
+  "indexed_by_lanthorn": true,
+  "description": "Catalogue of the Ostmere Athenaeum and its branch libraries.",
+  "pages": 198
+ },
+ {
+  "key": "museum",
+  "domain": "deephalls.khr",
+  "name": "Museum of the Deep Halls",
+  "category": "Museums",
+  "nation": "KHR",
+  "indexed_by_lanthorn": true,
+  "description": "Nine centuries of the Holds, carved in stone.",
+  "pages": 131
+ },
+ {
+  "key": "reelhouse",
+  "domain": "reelhouse.ves",
+  "name": "Reelhouse",
+  "category": "Film",
+  "nation": "VEY",
+  "indexed_by_lanthorn": true,
+  "description": "Every film, every player, every reel.",
+  "pages": 258
+ },
+ {
+  "key": "bellows",
+  "domain": "bellows.ves",
+  "name": "Bellows Records",
+  "category": "Music",
+  "nation": "SLT",
+  "indexed_by_lanthorn": true,
+  "description": "Independent records from the Rope Walk.",
+  "pages": 24
+ },
+ {
+  "key": "vaultball",
+  "domain": "vaultball.ves",
+  "name": "Vaultball Premier Circuit",
+  "category": "Sport",
+  "nation": "SLT",
+  "indexed_by_lanthorn": true,
+  "description": "The official site of the Premier Circuit.",
+  "pages": 293
+ },
+ {
+  "key": "chatter",
+  "domain": "chatter.fol",
+  "name": "Chatter",
+  "category": "Social",
+  "nation": "SLT",
+  "indexed_by_lanthorn": true,
+  "description": "What's the chatter?",
+  "pages": 1400
+ },
+ {
+  "key": "tallowboards",
+  "domain": "tallowboards.fol",
+  "name": "Tallow Boards",
+  "category": "Forums",
+  "nation": "VEY",
+  "indexed_by_lanthorn": false,
+  "description": "The oldest message boards on the Weave.",
+  "pages": 217
+ },
+ {
+  "key": "wrenwrites",
+  "domain": "wrenwrites.fol",
+  "name": "Wren Writes",
+  "category": "Blogs",
+  "nation": "VEY",
+  "indexed_by_lanthorn": false,
+  "description": "Walks, ferries, and small towns.",
+  "pages": 42
+ },
+ {
+  "key": "spirekeeper",
+  "domain": "spirekeeper.fol",
+  "name": "The Spire Log",
+  "category": "Blogs",
+  "nation": "SLT",
+  "indexed_by_lanthorn": false,
+  "description": "Notes from the lamp room.",
+  "pages": 10
+ },
+ {
+  "key": "ossawatcher",
+  "domain": "ossawatcher.fol",
+  "name": "OSSA WATCHER",
+  "category": "Blogs",
+  "nation": "VEY",
+  "indexed_by_lanthorn": false,
+  "description": "THEY DON'T WANT YOU TO LOOK UP",
+  "pages": 6
+ },
+ {
+  "key": "hearthandhob",
+  "domain": "hearthandhob.fol",
+  "name": "Hearth & Hob",
+  "category": "Food",
+  "nation": "VEY",
+  "indexed_by_lanthorn": true,
+  "description": "Recipes from a Gorsefield kitchen.",
+  "pages": 11
+ },
+ {
+  "key": "inkling",
+  "domain": "inkling.fol",
+  "name": "Inkling",
+  "category": "Comics",
+  "nation": "PEL",
+  "indexed_by_lanthorn": false,
+  "description": "A comic about a squid who works in a library.",
+  "pages": 14
+ },
+ {
+  "key": "fathomwiki",
+  "domain": "fathomwiki.fol",
+  "name": "Fathom Wiki",
+  "category": "Games",
+  "nation": "PEL",
+  "indexed_by_lanthorn": true,
+  "description": "The Fathom and Fathom: Undertow wiki that anyone can edit.",
+  "pages": 63
+ },
+ {
+  "key": "guildwork",
+  "domain": "guildwork.gld",
+  "name": "Guildwork",
+  "category": "Jobs",
+  "nation": "VEY",
+  "indexed_by_lanthorn": true,
+  "description": "Work, apprenticeships, and guild placements.",
+  "pages": 153
+ },
+ {
+  "key": "whiskerhaven",
+  "domain": "whiskerhaven.fol",
+  "name": "Whiskerhaven",
+  "category": "Animals",
+  "nation": "SLT",
+  "indexed_by_lanthorn": false,
+  "description": "Rehoming cats, dogs, and the occasional gull.",
+  "pages": 70
+ },
+ {
+  "key": "weft",
+  "domain": "weft.gld",
+  "name": "Weft",
+  "category": "Technology",
+  "nation": "PEL",
+  "indexed_by_lanthorn": true,
+  "description": "The Weft language for looms. Docs, reference, and releases.",
+  "pages": 12
+ },
+ {
+  "key": "synod",
+  "domain": "synod.odd",
+  "name": "The Synod of the Pale Flame",
+  "category": "Government",
+  "nation": "ODD",
+  "indexed_by_lanthorn": false,
+  "description": "Official notices of the Synod.",
+  "pages": 7
+ }
+]

@@ -111,7 +111,7 @@ Keeper, Warden, Vaulter, Rimmer, Wellstriker.</p><p>A caution is shown for rough
     site.page("/", "Premier Circuit", f"""<h1>Premier Circuit 412</h1><div class="cols"><div>{tbl}</div><div class="panel"><h2>Next round</h2>
 {kit.table(["Home", "", "Away"], [[tname(m.home), "v", tname(m.away)] for m in upcoming if m.round == upcoming[0].round], raw=True) if upcoming else ""}
 <p>{upcoming[0].date.long() if upcoming else ""}</p><h2>Leaders</h2><p>{esc(lead.name)} lead with {table[0]['pts']} points.</p></div></div>""")
-    ketta = next(p for p in PLAYER.values() if p.name.given == "Ketta")
+    ketta = PLAYER["hammers-anvilmark-ketta"]
     site.fact("vaultball-ketta-points", f"How many points has Anvilmark Ketta scored in the 412 Premier Circuit (as of {TODAY.long()})?",
-              str(ketta.stats["points"]), f"/players/{ketta.id}/")
+              str(ketta.stats["points"]), f"/players/{ketta.id}/", note="a team-mate, Greystone Ketta, has the same given name")
     site.fact("vaultball-leader", f"Who leads the Premier Circuit on {TODAY.long()}?", lead.name, "/standings/")

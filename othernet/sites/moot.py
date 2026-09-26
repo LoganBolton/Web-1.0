@@ -80,10 +80,13 @@ def build(web, site):
     rulings.append({**DEEPSHAFT, "kind": "safety"})
     rulings.sort(key=lambda r: r["date"])
     counters = {}
+    preset = {r["no"] for r in rulings if r.get("no")}
     for r in rulings:
         y = r["date"].hr_year
         counters[y] = counters.get(y, 0) + 1
         if r.get("no") is None:
+            while f"MR {y}/{counters[y]:02d}" in preset:
+                counters[y] += 1
             r["no"] = f"MR {y}/{counters[y]:02d}"
         r["path"] = f"/ruling/{r['no'].split()[1].replace('/', '-')}/"
     # make sure Deepshaft keeps its famous number without colliding

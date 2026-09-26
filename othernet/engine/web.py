@@ -9,6 +9,7 @@ from . import domains
 _TAG_RE = re.compile(r"<[^>]+>")
 _SCRIPT_RE = re.compile(r"<(script|style)[^>]*>.*?</\1>", re.S | re.I)
 _WS_RE = re.compile(r"\s+")
+_HREF_RE = re.compile(r'href="([^"#]+)')
 
 
 def esc(s):
@@ -73,13 +74,24 @@ class Site:
             self, title, body, **kw)
         self.write(path, full)
         self.pages.append({"url": self.url(path), "title": title,
-                           "text": text_of(body)[:4000], "index": index})
+                           "text": text_of(body)[:4000], "index": index, "links": self._links(full)})
         return self.url(path)
+
+    def _links(self, html_str):
+        out = set()
+        for h in _HREF_RE.findall(html_str):
+            h = html.unescape(h)
+            if h.startswith("http://"):
+                out.add(h.split("?")[0])
+            elif h.startswith("/"):
+                out.add(self.url(h.split("?")[0]))
+        return sorted(out)
 
     def raw_page(self, path, title, full_html, index=True):
         self.write(path, full_html)
         self.pages.append({"url": self.url(path), "title": title,
-                           "text": text_of(full_html)[:4000], "index": index})
+                           "text": text_of(full_html)[:4000], "index": index,
+                           "links": self._links(full_html)})
         return self.url(path)
 
     def redirect(self, path, target, delay=0, message=""):
