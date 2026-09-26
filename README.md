@@ -1,4 +1,4 @@
-# Web-1.0: the Weave
+# WebSim: the Weave
 
 A whole fictional internet for testing web agents.
 
