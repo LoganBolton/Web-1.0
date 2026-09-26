@@ -23,7 +23,7 @@ def encode(paras):
 
 
 def block(article_id, lead_html, rest_paras, key, free=3, brand="this paper",
-          creds=(), suspended=(), signin_hint=""):
+          creds=(), suspended=(), signin_hint="", wall_title=None):
     """Return HTML+JS for the gated article body.
 
     creds: list of (user, password) that unlock. suspended: list of (user, password)
@@ -35,7 +35,7 @@ def block(article_id, lead_html, rest_paras, key, free=3, brand="this paper",
 <div class="lead">{lead_html}</div>
 <div id="pw-rest" data-enc="{encode(rest_paras)}"></div>
 <div id="pw-wall" hidden class="paywall">
- <h3>You have read your {free} free articles this month</h3>
+ <h3>{esc(wall_title or f"You have read your {free} free articles this month")}</h3>
  <p>Subscribe to {esc(brand)} to keep reading, or sign in below.</p>
  <form id="pw-form"><label>Reader name <input id="pw-u" autocomplete="username"></label>
  <label>Pass code <input id="pw-p" type="password" autocomplete="current-password"></label>
