@@ -9,7 +9,7 @@ apply. An agent has to work out from first principles how this internet is organ
 sources can be trusted, and where information actually lives.
 
 ```
-54 sites · ~8,800 pages · ~4,200 generated images · 117 recorded facts · 30 sample questions
+54 sites · ~8,800 pages · ~4,200 generated images · 117 recorded facts · 224 eval questions
 ```
 
 Everything is generated from one consistent world simulation, so the same fact (a price, a
@@ -86,9 +86,10 @@ Good starting points for an agent are the same as for a resident of Averra: `mor
   question, answer, URL where it appears, modality (`text`, `image`, `interaction`, `hover`,
   `source`), and hop count.
 
-`evals/sample_questions.jsonl` holds 30 hand-written multi-hop questions with answers, the
-route through the Weave, and notes on the traps. `docs/WORLD.md` is the spoiler guide to the
-world and its storylines, for people writing new questions.
+`evals/questions.jsonl` holds **224 eval questions** (90 easy, 77 medium, 57 hard), each with a
+single objective answer, verified against the built Weave. `evals/grade.py` scores answers. See
+[evals/README.md](evals/README.md). `docs/WORLD.md` is the spoiler guide to the world and its
+storylines, for people writing new questions.
 
 ## Checks
 
@@ -96,6 +97,8 @@ world and its storylines, for people writing new questions.
 python tools/check_links.py web     # every href/src resolves (a few deliberate dead links excepted)
 python tools/check_svg.py web       # every generated image is valid SVG
 node tools/smoke_test.js            # end-to-end checks of paywall, logins, forms, cart, search (needs Playwright and the server running)
+python -m othernet.evalgen          # regenerate and verify the eval questions
+node tools/verify_interactive.js    # replay the interactive eval questions in a browser
 ```
 
 ## How it's built
