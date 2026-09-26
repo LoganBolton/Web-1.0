@@ -62,7 +62,7 @@ def hemicycle():
             pos.append((a, 260 + r * math.cos(a), 250 - r * math.sin(a)))
     pos.sort(key=lambda t: -t[0])
     for (a, x, y), party in zip(pos, seats):
-        parts.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="7" fill="{PARTIES[party]["color"]}"><title>{PARTIES[party]["name"]}</title></circle>')
+        parts.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="7" fill="{PARTIES[party]["color"]}"><title>{esc(PARTIES[party]["name"])}</title></circle>')
     parts.append(svg.text(260, 240, "90 seats", 16, "#333", "middle", "bold"))
     return svg.wrap(w, h, "".join(parts))
 

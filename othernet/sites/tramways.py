@@ -106,7 +106,8 @@ function hm(m){{m=((m%1440)+1440)%1440;return String(Math.floor(m/60)).padStart(
 function go(){{var v=document.getElementById('t').value.split(':'),t=+v[0]*60+ +v[1],sd=document.getElementById('wd').value==='Stillday',out=[];
 N.lines.forEach(function(L){{var i=L.s.indexOf(STOP);if(i<0)return;var dirs=[[L.s,i],[L.s.slice().reverse(),L.s.length-1-i]];
 dirs.forEach(function(d){{var seq=d[0],k=d[1];if(k===seq.length-1)return;var first=L.f+(sd?60:0)+k*N.run,last=L.l+k*N.run;
-for(var m=first;m<=last;m+=L.e){{if(m>=t){{out.push([m,L.c,seq[seq.length-1]]);if(out.filter(x=>x[1]===L.c&&x[2]===seq[seq.length-1]).length>=3)break;}}}}}});}});
+var loop=L.s[0]===L.s[L.s.length-1],dest=loop?(seq===L.s?'Circle (clockwise)':'Circle (anticlockwise)'):seq[seq.length-1];
+for(var m=first;m<=last;m+=L.e){{if(m>=t){{out.push([m,L.c,dest]);if(out.filter(x=>x[1]===L.c&&x[2]===dest).length>=3)break;}}}}}});}});
 out.sort((a,b)=>a[0]-b[0]);document.getElementById('board').innerHTML=out.slice(0,10).map(function(x){{var c=N.closed.indexOf(x[1])>=0;
 return '<div><span>'+hm(x[0])+'  '+x[1]+'  to '+x[2]+'</span><span>'+(c?'CANCELLED':'on time')+'</span></div>';}}).join('')||'<div>No more trams today.</div>';}}
 document.getElementById('t').oninput=go;document.getElementById('wd').onchange=go;go();}});</script>""")
