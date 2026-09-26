@@ -49,7 +49,7 @@ table{border-collapse:collapse}td,th{padding:4px 10px;border-bottom:1px solid #d
 def shell(site, title, body, **kw):
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{esc(title)} | The Ostmere Courier</title><style>{CSS}</style></head><body>
+<title>{esc(title)} | The Ostmere Courier</title><link rel="stylesheet" href="/style.css"></head><body>
 <header class="mast"><a class="name" href="/">The Ostmere Courier</a>
 <div class="meta"><span>{TODAY.full()}</span><span>The Concordat's paper of record since 190</span>
 <span><a href="/subscribe/">Subscribe</a> &middot; <a href="/signin/">Sign in</a></span></div></header>
@@ -125,6 +125,7 @@ def story_path(s):
 
 def build(web, site):
     site.shell = shell
+    site.write("/style.css", CSS)
     stories = [s for s in ALL_STORIES if "courier" in s.outlets and s.date <= TODAY]
     pop = generate_population()
     # --- articles ---------------------------------------------------------

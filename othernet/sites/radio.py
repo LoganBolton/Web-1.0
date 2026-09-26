@@ -70,7 +70,7 @@ table{border-collapse:collapse;width:100%}td,th{padding:6px;border-bottom:1px so
 
 def shell(site, title, body, **kw):
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><title>{esc(title)} - Radio Lantern</title>
-<meta name="viewport" content="width=device-width, initial-scale=1"><style>{CSS}</style></head><body>
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/style.css"></head><body>
 <header><a href="/"><h1>&#128251; Radio Lantern 91.4</h1></a><p>Broadcasting from Observatory Hill, Lanternport</p></header>
 <nav><a href="/">Schedule</a><a href="/shows/">Shows</a><a href="/transcripts/">Transcripts</a><a href="/listen/">Listen</a></nav>
 <main>{body}</main>{kw.get('scripts', '')}</body></html>"""
@@ -78,6 +78,7 @@ def shell(site, title, body, **kw):
 
 def build(web, site):
     site.shell = shell
+    site.write("/style.css", CSS)
     tabs = []
     for i, wd in enumerate(WEEKDAYS):
         rng = stream("radio", wd)

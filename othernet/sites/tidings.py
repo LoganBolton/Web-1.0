@@ -43,7 +43,7 @@ def shell(site, title, body, **kw):
     side = kw.get("side", SIDE_CACHE.get("html", ""))
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{esc(title)} - Brineholt Tidings</title><style>{CSS}</style></head><body>
+<title>{esc(title)} - Brineholt Tidings</title><link rel="stylesheet" href="/style.css"></head><body>
 <div class="bar"><a class="logo" href="/">Brineholt<span>Tidings</span></a>
 <span class="date">{TODAY.weekday}, {TODAY.salt()} &middot; Brineholt</span></div>
 <div class="nav">{"".join(f'<a href="/section/{k}/">{v}</a>' for k, v in SECTIONS.items())}
@@ -70,6 +70,7 @@ SHIPS = ["Kittiwake", "Sea Ledger", "Northmole Lass", "Brisa", "Petrel", "Tern's
 
 def build(web, site):
     site.shell = shell
+    site.write("/style.css", CSS)
     stories = [s for s in ALL_STORIES if "tidings" in s.outlets and s.date <= TODAY]
     # sidebar: tides, weather, league table
     t = tides(TODAY, "Brineholt")

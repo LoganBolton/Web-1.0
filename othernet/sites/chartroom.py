@@ -35,7 +35,7 @@ footer{border-top:1px solid #cdbf9f;margin-top:40px;padding:16px;font-size:13px;
 def shell(site, title, body, **kw):
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{esc(title)} &middot; Chartroom</title><style>{CSS}</style></head><body>
+<title>{esc(title)} &middot; Chartroom</title><link rel="stylesheet" href="/style.css"></head><body>
 <header><a class="brand" href="/">Chartroom</a>
 <nav><a href="/">The Chart</a><a href="/nations/">Nations</a><a href="/places/">Places</a>
 <a href="/landmarks/">Landmarks</a><a href="/distances/">Distances</a><a href="/legend/">Legend</a></nav></header>
@@ -47,6 +47,7 @@ Climate figures courtesy of the <a href="{url('weather')}">Concordat Weather Off
 
 def build(web, site):
     site.shell = shell
+    site.write("/style.css", CSS)
     site.write("/img/chart.svg", world_map())
     # --- front page -------------------------------------------------------
     by_nation = "".join(

@@ -405,7 +405,7 @@ def _tidal_primes(k):
 def shell(site, title, body, **kw):
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{esc(title)} &mdash; The Commonplace</title><style>{CSS}</style></head><body>
+<title>{esc(title)} &mdash; The Commonplace</title><link rel="stylesheet" href="/style.css"></head><body>
 <div class="top"><a class="brand" href="/">The Commonplace</a>
 <span style="font-size:12px;color:#54595d">kept by the learned guilds</span>
 <form action="/search/" method="get"><input name="q" placeholder="Search the Commonplace" aria-label="Search">
@@ -421,6 +421,7 @@ def shell(site, title, body, **kw):
 
 def render(web, site, folios):
     site.shell = shell
+    site.write("/style.css", CSS)
     folios = [f for f in folios if f is not None]
     seen = set()
     for f in folios:

@@ -78,7 +78,7 @@ footer{text-align:center;color:#64748b;font-size:12px;padding:30px}
 def shell(site, title, body, **kw):
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(title)} | Lodestone</title>
-<style>{CSS}</style></head><body><header><a class="logo" href="/">LODESTONE</a>
+<link rel="stylesheet" href="/style.css"></head><body><header><a class="logo" href="/">LODESTONE</a>
 <nav><a href="/features/">Features</a><a href="/news/">Science news</a><a href="/issues/">Back issues</a>
 <a href="/ask/">Ask Lodestone</a></nav></header><main>{body}</main>
 <footer>Lodestone is published monthly in Lanternport. Science for the curious since 355.</footer></body></html>"""
@@ -96,6 +96,7 @@ def cover(month, year, headline):
 
 def build(web, site):
     site.shell = shell
+    site.write("/style.css", CSS)
     feats = [f for f in FEATURES if f[0] <= TODAY]
     items = []
     for d, title, tag, author, ps in sorted(feats, reverse=True):
