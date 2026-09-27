@@ -39,6 +39,9 @@ things (standings, open recalls, prices) are fixed in time and do not drift.
 * `evidence` and `steps` are for graders and question writers. **Do not show them to the agent.**
   Give the agent only `question`, plus a starting page such as `http://morrow.ves/`.
 
+To run an agent on these questions in a sealed browser sandbox, use `harness/` (see
+[harness/README.md](../harness/README.md)).
+
 ## Grading
 
 Write predictions as JSON lines, `{"id": "e001", "answer": "..."}`, then:

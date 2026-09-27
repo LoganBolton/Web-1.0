@@ -91,6 +91,19 @@ single objective answer, verified against the built Weave. `evals/grade.py` scor
 [evals/README.md](evals/README.md). `docs/WORLD.md` is the spoiler guide to the world and its
 storylines, for people writing new questions.
 
+## Running agents
+
+`harness/` runs agents such as Codex on the questions through
+[Harbor](https://github.com/harbor-framework/harbor). The agent gets one question and a
+browser it controls with screenshots and clicks, and nothing else. It cannot see the
+questions file, the answers, or the site files, and it cannot reach the real internet. See
+[harness/README.md](harness/README.md).
+
+```bash
+bash harness/build_images.sh && python harness/make_tasks.py
+OPENAI_API_KEY=... harbor run -c harness/codex-job.yaml
+```
+
 ## Checks
 
 ```bash
