@@ -1,5 +1,9 @@
 # WebSim
 
+> Note: I built this to see how well models handle RAG on a web they've never seen. Turns out
+> they're already really good at it, so I've moved on. Leaving it up in case it's useful to
+> anyone.
+
 A fake internet for testing web agents. It has 54 sites and about 8,800 pages set in a made-up
 world, so models can't rely on what they already know about the real web.
 
