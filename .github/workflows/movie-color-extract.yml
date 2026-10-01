@@ -1,0 +1,46 @@
+name: movie-color-eval extract
+
+# Downloads the public domain films in movie-color-eval/movies.json from archive.org,
+# averages their frames, and commits the results to movie-color-eval/data/.
+on:
+  push:
+    branches: [claude/movie-frame-color-identifier-twi9cz]
+    paths:
+      - movie-color-eval/movies.json
+      - movie-color-eval/extract.py
+      - .github/workflows/movie-color-extract.yml
+  workflow_dispatch:
+
+concurrency:
+  group: movie-color-extract-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    defaults:
+      run:
+        working-directory: movie-color-eval
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - run: pip install -r requirements.txt
+      - run: python extract.py archive --workers 4
+      - run: python build_questions.py
+      - run: python gallery.py
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet && exit 0
+          git commit -m "movie-color-eval: update extracted colors"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
