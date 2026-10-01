@@ -12,6 +12,7 @@ Outputs land in data/:
 """
 
 import argparse
+import io
 import json
 import os
 import re
@@ -61,14 +62,28 @@ def save_entry(entry):
 # ---------------------------------------------------------------- frame averaging
 
 
-def probe_size(path):
-    out = subprocess.run(
-        ["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width,height",
-         "-of", "json", str(path)],
-        capture_output=True, text=True, check=True,
+def find_ffmpeg():
+    exe = os.environ.get("FFMPEG") or shutil.which("ffmpeg")
+    if exe:
+        return exe
+    try:
+        import imageio_ffmpeg
+        return imageio_ffmpeg.get_ffmpeg_exe()
+    except ImportError:
+        sys.exit("ffmpeg not found. pip install imageio-ffmpeg, or install ffmpeg yourself")
+
+
+FFMPEG = None
+
+
+def scaled_size(path, scale):
+    """Size ffmpeg produces for `scale` on this video, read off one decoded frame."""
+    png = subprocess.run(
+        [FFMPEG, "-nostdin", "-v", "error", "-i", str(path), "-vf", scale, "-frames:v", "1",
+         "-f", "image2pipe", "-vcodec", "png", "-"],
+        capture_output=True, check=True,
     ).stdout
-    s = json.loads(out)["streams"][0]
-    return s["width"], s["height"]
+    return Image.open(io.BytesIO(png)).size
 
 
 def average_video(path, fps=1.0, width=160):
@@ -77,11 +92,12 @@ def average_video(path, fps=1.0, width=160):
     Returns (mean_rgb, avg_frame uint8 HxWx3, per-frame mean colors Nx3).
     Colors are plain sRGB averages, which is what a naive "average all frames" gives you.
     """
-    w, h = probe_size(path)
-    height = max(2, round(width * h / w / 2) * 2)
+    # square up anamorphic pixels first so the average frame has the real aspect ratio
+    scale = f"scale=iw*sar:ih,scale={width}:-2:flags=area"
+    width, height = scaled_size(path, scale)
     cmd = [
-        "ffmpeg", "-nostdin", "-v", "error", "-i", str(path),
-        "-vf", f"fps={fps},scale={width}:{height}:flags=area",
+        FFMPEG, "-nostdin", "-v", "error", "-i", str(path),
+        "-vf", f"fps={fps},{scale}",
         "-pix_fmt", "rgb24", "-f", "rawvideo", "-",
     ]
     proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
@@ -266,8 +282,8 @@ def run_local(args):
 
 
 def main():
-    if not shutil.which("ffmpeg"):
-        sys.exit("ffmpeg is required (brew install ffmpeg / apt install ffmpeg)")
+    global FFMPEG
+    FFMPEG = find_ffmpeg()
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
     a = sub.add_parser("archive", help="process public domain films from movies.json via archive.org")

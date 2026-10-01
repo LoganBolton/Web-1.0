@@ -16,7 +16,7 @@ has 10 choices, so guessing gets about 10%.
 
 ## Setup
 
-Python 3.10+ and ffmpeg.
+Python 3.10+. `imageio-ffmpeg` ships an ffmpeg binary, so nothing else to install (a system ffmpeg is used if one is on your PATH).
 
 ```bash
 pip install -r requirements.txt
