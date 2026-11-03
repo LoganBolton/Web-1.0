@@ -222,7 +222,6 @@ def _assemble(world, state0, ctx, t_ctx, t_pred, options):
     for o in options:
         fut = o.rollout["traj"]
         c = new_canvas()
-        draw_path(c, ctx, 0, t_ctx, CTX_TRAIL, alpha=110, dots=False)
         c.circle(p[0], p[1], R, fill=with_alpha(lighten(BALL, 0.5), 255))
         draw_path(c, fut, 0, t_pred, PRED)
         q = fut[-1]
@@ -234,7 +233,6 @@ def _assemble(world, state0, ctx, t_ctx, t_pred, options):
         for i in range(m + 1):
             t = i / FPS
             c = new_canvas()
-            draw_path(c, ctx, 0, t_ctx, CTX_TRAIL, alpha=110, dots=False)
             draw_path(c, fut, 0, t, PRED)
             q = at(fut, t)
             c.circle(q[0], q[1], R, fill=BALL)
