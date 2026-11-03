@@ -3,41 +3,41 @@
  "task": "bounce",
  "answer": "A",
  "world": {
-  "g": 3.032,
-  "tilt_deg": 59.242,
-  "restitution": 0.379,
+  "g": 19.1,
+  "tilt_deg": 0.0,
+  "restitution": 0.678,
   "drag": 0.0,
-  "slip": 0.933
+  "slip": 0.961
  },
  "setup": {
   "start_state": [
-   2.393,
-   4.332,
-   -0.083,
-   -6.762
+   4.273,
+   7.65,
+   4.32,
+   -2.352
   ],
-  "t_context": 3.6,
+  "t_context": 2.7,
   "t_predict": 3.0,
   "state_at_cut": [
-   18.702,
-   1.977,
-   9.205,
-   -1.849
+   15.492,
+   0.824,
+   3.991,
+   -6.587
   ],
   "true_end": [
-   19.453,
+   17.368,
    0.4
   ]
  },
  "prompt": {
-  "intro": "This is a 2D simulated world whose physics may be different from Earth's. Gravity can be any strength and may not point straight down, the ball's bounciness and air drag are unknown, and the walls of the box are solid. Grid squares are 1 m. You are shown a video of a ball moving for 3.6 s.",
+  "intro": "This is a 2D simulated world whose physics may be different from Earth's. Gravity can be any strength and may not point straight down, the ball's bounciness and air drag are unknown, and the walls of the box are solid. Grid squares are 1 m. You are shown a video of a ball moving for 2.7 s.",
   "question": "Each candidate image shows a possible path for the next 3.0 s (red dots every 0.1 s, the solid blue ball is where it ends up). Which candidate is what will actually happen in this world?"
  },
  "context": {
   "video_gif": "context.gif",
   "video_mp4": "context.mp4",
   "fps": 20,
-  "n_frames": 73,
+  "n_frames": 55,
   "summary": "context_summary.png",
   "keyframes": [
    {
@@ -46,31 +46,31 @@
    },
    {
     "path": "frames/ctx_01.png",
-    "caption": "t = 0.50 s"
+    "caption": "t = 0.40 s"
    },
    {
     "path": "frames/ctx_02.png",
-    "caption": "t = 1.05 s"
+    "caption": "t = 0.75 s"
    },
    {
     "path": "frames/ctx_03.png",
-    "caption": "t = 1.55 s"
+    "caption": "t = 1.15 s"
    },
    {
     "path": "frames/ctx_04.png",
-    "caption": "t = 2.05 s"
+    "caption": "t = 1.55 s"
    },
    {
     "path": "frames/ctx_05.png",
-    "caption": "t = 2.55 s"
+    "caption": "t = 1.95 s"
    },
    {
     "path": "frames/ctx_06.png",
-    "caption": "t = 3.10 s"
+    "caption": "t = 2.30 s"
    },
    {
     "path": "frames/ctx_07.png",
-    "caption": "t = 3.60 s"
+    "caption": "t = 2.70 s"
    }
   ]
  },
@@ -83,11 +83,11 @@
    "label": "true",
    "desc": "the world's real physics",
    "params": {
-    "g": 3.032,
-    "tilt_deg": 59.242,
-    "restitution": 0.379,
+    "g": 19.1,
+    "tilt_deg": 0.0,
+    "restitution": 0.678,
     "drag": 0.0,
-    "slip": 0.933
+    "slip": 0.961
    },
    "correct": true
   },
@@ -95,14 +95,14 @@
    "letter": "B",
    "image": "option_B.png",
    "rollout_gif": "option_B.gif",
-   "label": "gravity_straight_down",
-   "desc": "gravity straight down (no tilt)",
+   "label": "tilt_minus35",
+   "desc": "gravity tilted 35 deg further counter-clockwise",
    "params": {
-    "g": 3.032,
-    "tilt_deg": 0.0,
-    "restitution": 0.379,
+    "g": 19.1,
+    "tilt_deg": -35.0,
+    "restitution": 0.678,
     "drag": 0.0,
-    "slip": 0.933
+    "slip": 0.961
    },
    "correct": false
   },
@@ -110,14 +110,14 @@
    "letter": "C",
    "image": "option_C.png",
    "rollout_gif": "option_C.gif",
-   "label": "gravity_up",
-   "desc": "gravity reversed",
+   "label": "gravity_x2.5",
+   "desc": "gravity 2.5x stronger",
    "params": {
-    "g": 3.032,
-    "tilt_deg": 239.242,
-    "restitution": 0.379,
+    "g": 47.749,
+    "tilt_deg": 0.0,
+    "restitution": 0.678,
     "drag": 0.0,
-    "slip": 0.933
+    "slip": 0.961
    },
    "correct": false
   },
@@ -140,14 +140,14 @@
    "letter": "E",
    "image": "option_E.png",
    "rollout_gif": "option_E.gif",
-   "label": "gravity_x2.5",
-   "desc": "gravity 2.5x stronger",
+   "label": "gravity_up",
+   "desc": "gravity reversed",
    "params": {
-    "g": 7.579,
-    "tilt_deg": 59.242,
-    "restitution": 0.379,
+    "g": 19.1,
+    "tilt_deg": 180.0,
+    "restitution": 0.678,
     "drag": 0.0,
-    "slip": 0.933
+    "slip": 0.961
    },
    "correct": false
   }

@@ -12,21 +12,21 @@
  "setup": {
   "start_state": [
    4.906,
-   8.616,
-   -4.943,
-   -5.557
+   9.61,
+   2.177,
+   -5.531
   ],
   "t_context": 3.5,
   "t_predict": 3.0,
   "state_at_cut": [
-   11.373,
-   0.92,
-   4.051,
-   9.864
+   12.27,
+   3.466,
+   2.077,
+   -10.148
   ],
   "true_end": [
-   16.186,
-   4.593
+   18.222,
+   2.143
   ]
  },
  "prompt": {
@@ -95,21 +95,6 @@
    "letter": "B",
    "image": "option_B.png",
    "rollout_gif": "option_B.gif",
-   "label": "gravity_x2.5",
-   "desc": "gravity 2.5x stronger",
-   "params": {
-    "g": 22.222,
-    "tilt_deg": 0.0,
-    "restitution": 0.901,
-    "drag": 0.0,
-    "slip": 0.954
-   },
-   "correct": false
-  },
-  {
-   "letter": "C",
-   "image": "option_C.png",
-   "rollout_gif": "option_C.gif",
    "label": "tilt_plus35",
    "desc": "gravity tilted 35 deg further clockwise",
    "params": {
@@ -122,14 +107,14 @@
    "correct": false
   },
   {
-   "letter": "D",
-   "image": "option_D.png",
-   "rollout_gif": "option_D.gif",
-   "label": "gravity_x0.35",
-   "desc": "gravity about 1/3 as strong",
+   "letter": "C",
+   "image": "option_C.png",
+   "rollout_gif": "option_C.gif",
+   "label": "gravity_up",
+   "desc": "gravity reversed",
    "params": {
-    "g": 3.111,
-    "tilt_deg": 0.0,
+    "g": 8.889,
+    "tilt_deg": 180.0,
     "restitution": 0.901,
     "drag": 0.0,
     "slip": 0.954
@@ -137,14 +122,29 @@
    "correct": false
   },
   {
+   "letter": "D",
+   "image": "option_D.png",
+   "rollout_gif": "option_D.gif",
+   "label": "ordinary_physics",
+   "desc": "ordinary Earth physics: 9.8 m/s^2 straight down, restitution 0.8, no drag",
+   "params": {
+    "g": 9.81,
+    "tilt_deg": 0.0,
+    "restitution": 0.8,
+    "drag": 0.0,
+    "slip": 0.95
+   },
+   "correct": false
+  },
+  {
    "letter": "E",
    "image": "option_E.png",
    "rollout_gif": "option_E.gif",
-   "label": "gravity_up",
-   "desc": "gravity reversed",
+   "label": "gravity_x0.35",
+   "desc": "gravity about 1/3 as strong",
    "params": {
-    "g": 8.889,
-    "tilt_deg": 180.0,
+    "g": 3.111,
+    "tilt_deg": 0.0,
     "restitution": 0.901,
     "drag": 0.0,
     "slip": 0.954

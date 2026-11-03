@@ -12,21 +12,21 @@
  "setup": {
   "start_state": [
    7.964,
-   6.044,
-   2.881,
-   -1.6
+   7.957,
+   2.084,
+   -0.881
   ],
   "t_context": 2.6,
   "t_predict": 3.0,
   "state_at_cut": [
-   7.103,
-   3.746,
-   -3.536,
-   -2.614
+   5.39,
+   5.445,
+   -4.043,
+   0.34
   ],
   "true_end": [
-   4.826,
-   2.0
+   4.605,
+   1.493
   ]
  },
  "prompt": {
@@ -110,12 +110,12 @@
    "letter": "C",
    "image": "option_C.png",
    "rollout_gif": "option_C.gif",
-   "label": "less_bouncy",
-   "desc": "much less bouncy",
+   "label": "gravity_up",
+   "desc": "gravity reversed",
    "params": {
     "g": 6.901,
-    "tilt_deg": -20.837,
-    "restitution": 0.326,
+    "tilt_deg": 159.163,
+    "restitution": 0.815,
     "drag": 0.0,
     "slip": 0.811
    },

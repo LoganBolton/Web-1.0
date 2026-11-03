@@ -166,9 +166,10 @@ def build(rng):
     for _attempt in range(80):
         world = sample_world(rng)
         x0 = float(rng.uniform(2, W - 2))
-        y0 = float(rng.uniform(3, H - 2))
-        sp = float(rng.uniform(3, 12))
-        ang = float(rng.uniform(0, 2 * math.pi))
+        y0 = float(rng.uniform(6, H - 1.5))
+        sp = float(rng.uniform(2, 10))
+        # start moving sideways or downward (never up), so the opening motion is easy to read
+        ang = float(rng.uniform(math.radians(190), math.radians(350)))
         state0 = (x0, y0, sp * math.cos(ang), sp * math.sin(ang))
         t_ctx = float(round(rng.uniform(2.5, 4.0), 1))
         t_pred = 3.0

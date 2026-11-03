@@ -12,21 +12,21 @@
  "setup": {
   "start_state": [
    17.032,
-   9.88,
-   8.403,
-   4.546
+   10.423,
+   -7.223,
+   -3.011
   ],
   "t_context": 2.9,
   "t_predict": 3.0,
   "state_at_cut": [
-   0.495,
-   9.269,
-   -6.893,
-   -0.594
+   2.963,
+   6.927,
+   5.925,
+   -7.641
   ],
   "true_end": [
-   18.139,
-   4.767
+   18.952,
+   2.624
   ]
  },
  "prompt": {
@@ -95,36 +95,6 @@
    "letter": "B",
    "image": "option_B.png",
    "rollout_gif": "option_B.gif",
-   "label": "gravity_x0.35",
-   "desc": "gravity about 1/3 as strong",
-   "params": {
-    "g": 4.324,
-    "tilt_deg": 0.0,
-    "restitution": 0.929,
-    "drag": 0.0,
-    "slip": 0.883
-   },
-   "correct": false
-  },
-  {
-   "letter": "C",
-   "image": "option_C.png",
-   "rollout_gif": "option_C.gif",
-   "label": "heavy_drag",
-   "desc": "strong air drag",
-   "params": {
-    "g": 12.355,
-    "tilt_deg": 0.0,
-    "restitution": 0.929,
-    "drag": 1.2,
-    "slip": 0.883
-   },
-   "correct": false
-  },
-  {
-   "letter": "D",
-   "image": "option_D.png",
-   "rollout_gif": "option_D.gif",
    "label": "tilt_minus35",
    "desc": "gravity tilted 35 deg further counter-clockwise",
    "params": {
@@ -137,17 +107,47 @@
    "correct": false
   },
   {
+   "letter": "C",
+   "image": "option_C.png",
+   "rollout_gif": "option_C.gif",
+   "label": "gravity_x0.35",
+   "desc": "gravity about 1/3 as strong",
+   "params": {
+    "g": 4.324,
+    "tilt_deg": 0.0,
+    "restitution": 0.929,
+    "drag": 0.0,
+    "slip": 0.883
+   },
+   "correct": false
+  },
+  {
+   "letter": "D",
+   "image": "option_D.png",
+   "rollout_gif": "option_D.gif",
+   "label": "tilt_plus35",
+   "desc": "gravity tilted 35 deg further clockwise",
+   "params": {
+    "g": 12.355,
+    "tilt_deg": 35.0,
+    "restitution": 0.929,
+    "drag": 0.0,
+    "slip": 0.883
+   },
+   "correct": false
+  },
+  {
    "letter": "E",
    "image": "option_E.png",
    "rollout_gif": "option_E.gif",
-   "label": "ordinary_physics",
-   "desc": "ordinary Earth physics: 9.8 m/s^2 straight down, restitution 0.8, no drag",
+   "label": "heavy_drag",
+   "desc": "strong air drag",
    "params": {
-    "g": 9.81,
+    "g": 12.355,
     "tilt_deg": 0.0,
-    "restitution": 0.8,
-    "drag": 0.0,
-    "slip": 0.95
+    "restitution": 0.929,
+    "drag": 1.2,
+    "slip": 0.883
    },
    "correct": false
   }
