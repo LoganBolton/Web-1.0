@@ -210,6 +210,12 @@ def draw_slingshot(c, shot, pulled: bool, color=INK, alpha=255, ball_color=BALL)
         c.arrow((fx, fy), (fx + 3.0 * math.cos(th), fy + 3.0 * math.sin(th)), with_alpha((90, 90, 90), alpha), 2.0)
     else:
         c.line([lp, rp], with_alpha((120, 70, 40), alpha), 2)
+        # ghost of the pull-back, so the pull strength stays visible after release
+        bx, by = pulled_ball(shot)
+        ga = alpha * 0.4
+        c.line([lp, (bx, by)], with_alpha((120, 70, 40), ga), 2.5)
+        c.line([rp, (bx, by)], with_alpha((120, 70, 40), ga), 2.5)
+        c.circle(bx, by, R_BALL, fill=with_alpha(ball_color, ga))
 
 
 def draw_trail(c, sim, t_end=None, color=TRAIL, alpha=255, dots=True, line=True, cross=True):
@@ -341,7 +347,8 @@ def _assemble(world, demos, qshot, options):
             "This is a 2D simulated world whose physics may be different from Earth's. Gravity can be stronger, "
             "weaker or tilted, there can be wind and air drag, and the slingshot's strength is unknown. "
             "Launch speed is proportional to how far the ball is pulled back, and the ball flies off in the "
-            "direction opposite to the pull (the grey arrow). Grid squares are 1 m and the brown strip is the ground. "
+            "direction opposite to the pull (the grey arrow). After release, a faint ghost of the pulled-back ball "
+            "stays on the slingshot. Grid squares are 1 m and the brown strip is the ground. "
             f"You are shown {len(demos)} demo launches from slingshots placed at different spots, one after the other. "
             "In the summary image each demo shot has its own color."
         ),

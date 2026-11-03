@@ -47,7 +47,7 @@
   ]
  },
  "prompt": {
-  "intro": "This is a 2D simulated world whose physics may be different from Earth's. Gravity can be stronger, weaker or tilted, there can be wind and air drag, and the slingshot's strength is unknown. Launch speed is proportional to how far the ball is pulled back, and the ball flies off in the direction opposite to the pull (the grey arrow). Grid squares are 1 m and the brown strip is the ground. You are shown 2 demo launches from slingshots placed at different spots, one after the other. In the summary image each demo shot has its own color.",
+  "intro": "This is a 2D simulated world whose physics may be different from Earth's. Gravity can be stronger, weaker or tilted, there can be wind and air drag, and the slingshot's strength is unknown. Launch speed is proportional to how far the ball is pulled back, and the ball flies off in the direction opposite to the pull (the grey arrow). After release, a faint ghost of the pulled-back ball stays on the slingshot. Grid squares are 1 m and the brown strip is the ground. You are shown 2 demo launches from slingshots placed at different spots, one after the other. In the summary image each demo shot has its own color.",
   "question": "A new slingshot in the same world is pulled back as shown in the query image. Which candidate image shows what will actually happen (the full flight path, ending where the ball lands, marked with an x)? Trail dots are 0.1 s apart in every image."
  },
  "context": {
