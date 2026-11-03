@@ -365,7 +365,11 @@ kbd { font: 11px var(--font-mono); border: 1px solid var(--line); border-radius:
     });
     document.querySelectorAll(".play").forEach((b) => b.onclick = () => {
       const img = b.closest(".opt").querySelector("img");
-      const playing = img.src.endsWith(".gif");
+      const playing = img.src.includes(".gif");
+      img.onerror = playing ? null : () => {
+        img.onerror = null; img.src = img.dataset.png;
+        b.disabled = true; b.textContent = "Rollout not in this copy";
+      };
       img.src = playing ? img.dataset.png : img.dataset.gif + "?t=" + Date.now();
       b.textContent = playing ? "Play rollout" : "Show still";
     });
