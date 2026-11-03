@@ -17,7 +17,7 @@
    7.201
   ],
   "t_context": 3.4,
-  "t_predict": 1.5,
+  "t_predict": 3.0,
   "state_at_cut": [
    13.107,
    4.936,
@@ -25,13 +25,13 @@
    3.103
   ],
   "true_end": [
-   12.35,
-   1.87
+   11.659,
+   3.266
   ]
  },
  "prompt": {
   "intro": "This is a 2D simulated world whose physics may be different from Earth's. Gravity can be any strength and may not point straight down, the ball's bounciness and air drag are unknown, and the walls of the box are solid. Grid squares are 1 m. You are shown a video of a ball moving for 3.4 s.",
-  "question": "Each candidate image shows a possible path for the next 1.5 s (red dots every 0.1 s, the solid blue ball is where it ends up). Which candidate is what will actually happen in this world?"
+  "question": "Each candidate image shows a possible path for the next 3.0 s (red dots every 0.1 s, the solid blue ball is where it ends up). Which candidate is what will actually happen in this world?"
  },
  "context": {
   "video_gif": "context.gif",
@@ -80,11 +80,11 @@
    "letter": "A",
    "image": "option_A.png",
    "rollout_gif": "option_A.gif",
-   "label": "tilt_minus35",
-   "desc": "gravity tilted 35 deg further counter-clockwise",
+   "label": "gravity_x2.5",
+   "desc": "gravity 2.5x stronger",
    "params": {
-    "g": 6.86,
-    "tilt_deg": -35.0,
+    "g": 17.15,
+    "tilt_deg": 0.0,
     "restitution": 0.789,
     "drag": 0.0,
     "slip": 0.901
@@ -95,14 +95,14 @@
    "letter": "B",
    "image": "option_B.png",
    "rollout_gif": "option_B.gif",
-   "label": "tilt_plus35",
-   "desc": "gravity tilted 35 deg further clockwise",
+   "label": "ordinary_physics",
+   "desc": "ordinary Earth physics: 9.8 m/s^2 straight down, restitution 0.8, no drag",
    "params": {
-    "g": 6.86,
-    "tilt_deg": 35.0,
-    "restitution": 0.789,
+    "g": 9.81,
+    "tilt_deg": 0.0,
+    "restitution": 0.8,
     "drag": 0.0,
-    "slip": 0.901
+    "slip": 0.95
    },
    "correct": false
   },
@@ -110,11 +110,11 @@
    "letter": "C",
    "image": "option_C.png",
    "rollout_gif": "option_C.gif",
-   "label": "gravity_up",
-   "desc": "gravity reversed",
+   "label": "tilt_minus35",
+   "desc": "gravity tilted 35 deg further counter-clockwise",
    "params": {
     "g": 6.86,
-    "tilt_deg": 180.0,
+    "tilt_deg": -35.0,
     "restitution": 0.789,
     "drag": 0.0,
     "slip": 0.901
@@ -140,11 +140,11 @@
    "letter": "E",
    "image": "option_E.png",
    "rollout_gif": "option_E.gif",
-   "label": "gravity_x2.5",
-   "desc": "gravity 2.5x stronger",
+   "label": "tilt_plus35",
+   "desc": "gravity tilted 35 deg further clockwise",
    "params": {
-    "g": 17.15,
-    "tilt_deg": 0.0,
+    "g": 6.86,
+    "tilt_deg": 35.0,
     "restitution": 0.789,
     "drag": 0.0,
     "slip": 0.901

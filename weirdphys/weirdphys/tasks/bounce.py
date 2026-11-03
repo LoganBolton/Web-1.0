@@ -171,7 +171,7 @@ def build(rng):
         ang = float(rng.uniform(0, 2 * math.pi))
         state0 = (x0, y0, sp * math.cos(ang), sp * math.sin(ang))
         t_ctx = float(round(rng.uniform(2.5, 4.0), 1))
-        t_pred = 1.5
+        t_pred = 3.0
         ctx = simulate(world, state0, t_ctx)
         # the context must show some motion and at least one bounce, so there is something to learn from
         path_len = float(np.sum(np.linalg.norm(np.diff(ctx[::40, :2], axis=0), axis=1)))
@@ -226,7 +226,7 @@ def _assemble(world, state0, ctx, t_ctx, t_pred, options):
         draw_path(c, fut, 0, t_pred, PRED)
         q = fut[-1]
         c.circle(q[0], q[1], R, fill=BALL)
-        c.header("Candidate: next 1.5 s (red dots every 0.1 s)", f"t = {t_ctx:.1f} to {t_ctx + t_pred:.1f} s")
+        c.header(f"Candidate: next {t_pred:.1f} s (red dots every 0.1 s)", f"t = {t_ctx:.1f} to {t_ctx + t_pred:.1f} s")
         o.image = c.image()
         o.frames = []
         m = int(round(t_pred * FPS))

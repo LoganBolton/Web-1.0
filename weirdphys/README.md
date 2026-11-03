@@ -18,10 +18,13 @@ Open `viewer.html` in a browser to browse everything, quiz yourself, and see mod
 | Task | Context video | Question | Hidden physics |
 | --- | --- | --- | --- |
 | `slingshot` | Two demo launches from slingshots at different spots, pull distances and angles | A new slingshot is pulled back. Which flight path and landing spot is right? | gravity strength and tilt, sideways wind, air drag, launcher strength (speed per meter of pull) |
-| `bounce` | A ball bouncing around a box for 2.5 to 4 s | Which path does the ball follow over the next 1.5 s? | gravity strength and direction, restitution, air drag, wall friction |
+| `bounce` | A ball bouncing around a box for 2.5 to 4 s | Which path does the ball follow over the next 3 s? | gravity strength and direction, restitution, air drag, wall friction |
 | `gravflip` | Shapes float with gravity off, then gravity switches on and they collapse | A new floating arrangement in the same world. What does it look like 1.5 s after gravity switches on? | gravity direction (any, often sideways or up), gravity strength, elasticity, friction |
 
-Images carry a 1 m grid, a clock, and trail dots every 0.1 s so timing can be read off a still.
+Images carry a 1 m grid and trail dots every 0.1 s so timing can be read off a still. Bounce and
+gravity flip images also show a clock. Slingshot images have no text at all. The pull-back is drawn
+3.5x longer than the real pull so the launch angle is easy to see (still proportional, so pulls can be
+compared), and timestamps are given in the prompt text instead.
 The slingshot and bounce worlds use a small custom integrator. Gravity flip uses
 [pymunk](https://www.pymunk.org) (Chipmunk2D) rigid-body physics.
 
@@ -100,7 +103,7 @@ data/
 ## Ideas for next
 
 - Video answer options (four rollouts, pick the plausible one) instead of stills
-- Fewer cues (no pull or angle labels, no trail dots) as a harder setting
+- Fewer cues (no trail dots, no clock) as a harder setting
 - Worlds where the rule changes over time, such as gravity rotating 90 degrees after every flip
 - More scenes, for example pendulums, conveyor belts, magnets, or springs with odd stiffness
 - A training split, to see whether fine-tuning on weird worlds improves in-context adaptation

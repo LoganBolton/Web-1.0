@@ -17,7 +17,7 @@
    -7.845
   ],
   "t_context": 3.2,
-  "t_predict": 1.5,
+  "t_predict": 3.0,
   "state_at_cut": [
    16.325,
    3.996,
@@ -25,13 +25,13 @@
    -3.04
   ],
   "true_end": [
-   19.431,
-   2.019
+   19.36,
+   0.965
   ]
  },
  "prompt": {
   "intro": "This is a 2D simulated world whose physics may be different from Earth's. Gravity can be any strength and may not point straight down, the ball's bounciness and air drag are unknown, and the walls of the box are solid. Grid squares are 1 m. You are shown a video of a ball moving for 3.2 s.",
-  "question": "Each candidate image shows a possible path for the next 1.5 s (red dots every 0.1 s, the solid blue ball is where it ends up). Which candidate is what will actually happen in this world?"
+  "question": "Each candidate image shows a possible path for the next 3.0 s (red dots every 0.1 s, the solid blue ball is where it ends up). Which candidate is what will actually happen in this world?"
  },
  "context": {
   "video_gif": "context.gif",
@@ -80,10 +80,10 @@
    "letter": "A",
    "image": "option_A.png",
    "rollout_gif": "option_A.gif",
-   "label": "gravity_x2.5",
-   "desc": "gravity 2.5x stronger",
+   "label": "gravity_x0.35",
+   "desc": "gravity about 1/3 as strong",
    "params": {
-    "g": 18.046,
+    "g": 2.526,
     "tilt_deg": 56.226,
     "restitution": 0.692,
     "drag": 0.183,
@@ -110,11 +110,11 @@
    "letter": "C",
    "image": "option_C.png",
    "rollout_gif": "option_C.gif",
-   "label": "gravity_up",
-   "desc": "gravity reversed",
+   "label": "gravity_straight_down",
+   "desc": "gravity straight down (no tilt)",
    "params": {
     "g": 7.218,
-    "tilt_deg": 236.226,
+    "tilt_deg": 0.0,
     "restitution": 0.692,
     "drag": 0.183,
     "slip": 0.767

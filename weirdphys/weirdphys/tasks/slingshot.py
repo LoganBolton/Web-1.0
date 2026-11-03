@@ -23,6 +23,7 @@ FPS = 20
 STROBE = 0.1  # seconds between trail dots
 PILLAR_W = 0.5
 FORK = 0.9  # fork height above the pillar top
+PULL_DRAW = 3.5  # the pulled-back ball is drawn this many times the real pull, so the angle is easy to see
 BALL = (205, 60, 50)
 TRAIL = (205, 60, 50)
 DEMO_COLORS = [(60, 120, 210), (40, 160, 110), (170, 90, 200)]
@@ -49,6 +50,14 @@ def gravity_vec(world):
 
 def launch_point(shot):
     return shot["x"], shot["h"] + FORK
+
+
+def pulled_ball(shot):
+    """Where the pulled-back ball is drawn (exaggerated by PULL_DRAW, still proportional to the real pull)."""
+    fx, fy = launch_point(shot)
+    th = math.radians(shot["angle"])
+    d = PULL_DRAW * shot["pull"]
+    return fx - d * math.cos(th), fy - d * math.sin(th)
 
 
 def simulate(world, shot, tmax=12.0):
@@ -108,14 +117,17 @@ def sample_shot(rng, world, avoid=()):
     for _ in range(400):
         shot = {
             "x": float(rng.uniform(2, 20)),
-            "h": float(rng.choice([0.0, rng.uniform(1, 6)])),
+            "h": float(rng.choice([0.0, rng.uniform(1, 8)])),
             "angle": float(rng.uniform(20, 75)),
             "pull": float(round(rng.uniform(0.5, 1.4), 2)),
         }
         shot["angle"] = float(round(shot["angle"]))
         if any(abs(shot["angle"] - a["angle"]) < 8 and abs(shot["pull"] - a["pull"]) < 0.15 for a in avoid):
             continue
-        if any(abs(shot["x"] - a["x"]) < 5 for a in avoid):
+        if any(abs(shot["x"] - a["x"]) < 6 for a in avoid):
+            continue
+        bx, by = pulled_ball(shot)
+        if by < R_BALL + 0.15 or bx < R_BALL + 0.3:  # drawn pull-back must stay above ground and on screen
             continue
         sim = simulate(world, shot)
         if not sim["in_bounds"] or sim["T"] < 0.7:
@@ -169,14 +181,14 @@ _BG = None
 def new_canvas():
     global _BG
     if _BG is None:
-        _BG = Canvas(0, -1.0, W, H, 18)
-        _BG.grid(label=True)
+        _BG = Canvas(0, -1.0, W, H, 18, margin=(10, 10, 10, 10))
+        _BG.grid(label=False)  # no text anywhere on slingshot images
         _BG.rect(0, -1.0, W, 0, fill=GROUND_FILL)
         _BG.line([(0, 0), (W, 0)], GROUND, 3)
     return _BG.clone()
 
 
-def draw_slingshot(c, shot, pulled: bool, color=INK, alpha=255, label=True, label_color=INK, tag=""):
+def draw_slingshot(c, shot, pulled: bool, color=INK, alpha=255, ball_color=BALL):
     x, h = shot["x"], shot["h"]
     col = with_alpha(color, alpha)
     if h > 0:
@@ -189,18 +201,15 @@ def draw_slingshot(c, shot, pulled: bool, color=INK, alpha=255, label=True, labe
     c.line([(x, h + 0.45), rp], col, 4)
     th = math.radians(shot["angle"])
     if pulled:
-        bx, by = fx - shot["pull"] * math.cos(th), fy - shot["pull"] * math.sin(th)
+        bx, by = pulled_ball(shot)
         band = with_alpha((120, 70, 40), alpha)
-        c.line([lp, (bx, by)], band, 2.5)
-        c.line([rp, (bx, by)], band, 2.5)
-        c.circle(bx, by, R_BALL, fill=with_alpha(BALL, alpha))
+        c.line([lp, (bx, by)], band, 3.5)
+        c.line([rp, (bx, by)], band, 3.5)
+        c.circle(bx, by, R_BALL, fill=with_alpha(ball_color, alpha))
         # aim arrow (direction only, fixed length)
-        c.arrow((fx, fy), (fx + 2.2 * math.cos(th), fy + 2.2 * math.sin(th)), with_alpha((90, 90, 90), alpha), 1.5)
+        c.arrow((fx, fy), (fx + 3.0 * math.cos(th), fy + 3.0 * math.sin(th)), with_alpha((90, 90, 90), alpha), 2.0)
     else:
         c.line([lp, rp], with_alpha((120, 70, 40), alpha), 2)
-    if label:
-        c.text(x, h + FORK + 1.6, f"{tag}pull {shot['pull']:.2f} m @ {shot['angle']:.0f}°",
-               size=11, color=with_alpha(label_color, alpha), bg=(255, 255, 255, int(0.85 * alpha)))
 
 
 def draw_trail(c, sim, t_end=None, color=TRAIL, alpha=255, dots=True, line=True, cross=True):
@@ -221,7 +230,7 @@ def draw_trail(c, sim, t_end=None, color=TRAIL, alpha=255, dots=True, line=True,
         c.cross(*sim["landing"], color=with_alpha(color, alpha))
 
 
-def shot_frames(world, shot, sim, header, under=None, aim_s=0.5, hold_s=0.4):
+def shot_frames(shot, sim, under=None, aim_s=0.6, hold_s=0.4):
     """Animate one launch. `under(c)` draws persistent background content."""
     frames = []
     for i in range(int(aim_s * FPS)):
@@ -229,7 +238,6 @@ def shot_frames(world, shot, sim, header, under=None, aim_s=0.5, hold_s=0.4):
         if under:
             under(c)
         draw_slingshot(c, shot, pulled=True)
-        c.header(header, "aiming...")
         frames.append((c.image(), None))
     n = int(math.ceil(sim["T"] * FPS))
     for i in range(n + 1):
@@ -240,7 +248,6 @@ def shot_frames(world, shot, sim, header, under=None, aim_s=0.5, hold_s=0.4):
         draw_slingshot(c, shot, pulled=False)
         draw_trail(c, sim, t_end=t, cross=False)
         c.circle(*at_time(sim, t), R_BALL, fill=BALL)
-        c.header(header, f"t = {t:.2f} s after release")
         frames.append((c.image(), t))
     for i in range(int(hold_s * FPS)):
         c = new_canvas()
@@ -249,7 +256,6 @@ def shot_frames(world, shot, sim, header, under=None, aim_s=0.5, hold_s=0.4):
         draw_slingshot(c, shot, pulled=False)
         draw_trail(c, sim)
         c.circle(*sim["landing"], R_BALL, fill=BALL)
-        c.header(header, f"landed at t = {sim['T']:.2f} s")
         frames.append((c.image(), sim["T"]))
     return frames
 
@@ -294,10 +300,10 @@ def _assemble(world, demos, qshot, options):
 
         def under(c, prev=prev):
             for j, (s, m) in enumerate(prev):
-                draw_slingshot(c, s, pulled=False, alpha=90, label=False)
+                draw_slingshot(c, s, pulled=False, alpha=90)
                 draw_trail(c, m, color=DEMO_COLORS[j], alpha=90)
 
-        fr = shot_frames(world, shot, sim, f"Demo shot {i + 1} of {len(demos)}", under=under)
+        fr = shot_frames(shot, sim, under=under)
         video += [f for f, _ in fr]
         flight = [(f, t) for f, t in fr if t is not None]
         for f, t in pick_keyframes(flight, 4):
@@ -306,16 +312,12 @@ def _assemble(world, demos, qshot, options):
     # Summary: all demo shots with timing dots.
     c = new_canvas()
     for j, (s, m) in enumerate(demos):
-        draw_slingshot(c, s, pulled=True, label_color=DEMO_COLORS[j], tag=f"shot {j + 1}: ")
+        draw_slingshot(c, s, pulled=True, ball_color=DEMO_COLORS[j])
         draw_trail(c, m, color=DEMO_COLORS[j])
-        lx, ly = m["landing"]
-        c.text(lx, ly + 0.9, f"{m['T']:.2f} s", size=11, color=DEMO_COLORS[j], bg=(255, 255, 255, 200))
-    c.header("Demo shots (dots every 0.1 s)")
     summary = c.image()
 
     c = new_canvas()
     draw_slingshot(c, qshot, pulled=True)
-    c.header("New shot: where will it land?")
     query = c.image()
 
     for o in options:
@@ -324,28 +326,29 @@ def _assemble(world, demos, qshot, options):
         draw_slingshot(c, qshot, pulled=False)
         draw_trail(c, sim)
         c.circle(*sim["landing"], R_BALL, fill=BALL)
-        c.header("Candidate outcome (dots every 0.1 s)")
         o.image = c.image()
-        o.frames = [f for f, _ in shot_frames(o.params, qshot, sim, "Candidate outcome")]
+        o.frames = [f for f, _ in shot_frames(qshot, sim)]
         o.params = {k: round(v, 3) for k, v in o.params.items()}
 
     setup = {
         "demos": [{**s, "landing": m["landing"], "flight_time": round(m["T"], 3)} for s, m in demos],
         "query_shot": qshot,
+        "pull_draw_scale": PULL_DRAW,
         "true_landing": options[0].rollout["landing"],
     }
     prompt = {
         "intro": (
             "This is a 2D simulated world whose physics may be different from Earth's. Gravity can be stronger, "
             "weaker or tilted, there can be wind and air drag, and the slingshot's strength is unknown. "
-            "Launch speed is proportional to how far the ball is pulled back. Grid squares are 1 m. "
-            f"You are shown {len(demos)} demo launches from slingshots placed at different spots. The pull "
-            "distance and launch angle are written above each slingshot, and the grey arrow shows the launch direction."
+            "Launch speed is proportional to how far the ball is pulled back, and the ball flies off in the "
+            "direction opposite to the pull (the grey arrow). Grid squares are 1 m and the brown strip is the ground. "
+            f"You are shown {len(demos)} demo launches from slingshots placed at different spots, one after the other. "
+            "In the summary image each demo shot has its own color."
         ),
         "question": (
             "A new slingshot in the same world is pulled back as shown in the query image. Which candidate image "
-            "shows what will actually happen (the full flight path and where the ball lands)? Trail dots are "
-            "0.1 s apart in every image."
+            "shows what will actually happen (the full flight path, ending where the ball lands, marked with an x)? "
+            "Trail dots are 0.1 s apart in every image."
         ),
     }
     world_out = {k: round(v, 3) for k, v in world.items()}

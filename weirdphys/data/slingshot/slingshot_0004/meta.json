@@ -3,57 +3,58 @@
  "task": "slingshot",
  "answer": "E",
  "world": {
-  "g": 24.437,
-  "tilt_deg": 20.27,
-  "wind": -4.802,
+  "g": 6.559,
+  "tilt_deg": -10.292,
+  "wind": -1.595,
   "drag": 0.0,
-  "k": 18.928
+  "k": 11.817
  },
  "setup": {
   "demos": [
    {
-    "x": 11.237583388123182,
-    "h": 0.0,
-    "angle": 58.0,
-    "pull": 1.12,
+    "x": 13.470586820764485,
+    "h": 4.58013668799381,
+    "angle": 39.0,
+    "pull": 0.98,
     "landing": [
-     33.870247598773865,
+     27.846075834605017,
      0.35
     ],
-    "flight_time": 1.599
+    "flight_time": 2.823
    },
    {
-    "x": 17.29519109634472,
-    "h": 0.0,
+    "x": 5.945814649965818,
+    "h": 6.7202640692322,
     "angle": 69.0,
-    "pull": 1.04,
+    "pull": 1.02,
     "landing": [
-     33.69032744823454,
+     0.7818376398119037,
      0.35
     ],
-    "flight_time": 1.633
+    "flight_time": 4.045
    }
   ],
   "query_shot": {
-   "x": 4.229294904137992,
-   "h": 5.43763626940587,
-   "angle": 47.0,
-   "pull": 0.96
+   "x": 19.530085671054696,
+   "h": 7.782380182090363,
+   "angle": 51.0,
+   "pull": 0.91
   },
+  "pull_draw_scale": 3.5,
   "true_landing": [
-   27.049892175135067,
+   26.649087745263877,
    0.35
   ]
  },
  "prompt": {
-  "intro": "This is a 2D simulated world whose physics may be different from Earth's. Gravity can be stronger, weaker or tilted, there can be wind and air drag, and the slingshot's strength is unknown. Launch speed is proportional to how far the ball is pulled back. Grid squares are 1 m. You are shown 2 demo launches from slingshots placed at different spots. The pull distance and launch angle are written above each slingshot, and the grey arrow shows the launch direction.",
-  "question": "A new slingshot in the same world is pulled back as shown in the query image. Which candidate image shows what will actually happen (the full flight path and where the ball lands)? Trail dots are 0.1 s apart in every image."
+  "intro": "This is a 2D simulated world whose physics may be different from Earth's. Gravity can be stronger, weaker or tilted, there can be wind and air drag, and the slingshot's strength is unknown. Launch speed is proportional to how far the ball is pulled back, and the ball flies off in the direction opposite to the pull (the grey arrow). Grid squares are 1 m and the brown strip is the ground. You are shown 2 demo launches from slingshots placed at different spots, one after the other. In the summary image each demo shot has its own color.",
+  "question": "A new slingshot in the same world is pulled back as shown in the query image. Which candidate image shows what will actually happen (the full flight path, ending where the ball lands, marked with an x)? Trail dots are 0.1 s apart in every image."
  },
  "context": {
   "video_gif": "context.gif",
   "video_mp4": "context.mp4",
   "fps": 20,
-  "n_frames": 103,
+  "n_frames": 180,
   "summary": "context_summary.png",
   "keyframes": [
    {
@@ -62,15 +63,15 @@
    },
    {
     "path": "frames/ctx_01.png",
-    "caption": "demo shot 1, t = 0.65 s after release"
+    "caption": "demo shot 1, t = 1.10 s after release"
    },
    {
     "path": "frames/ctx_02.png",
-    "caption": "demo shot 1, t = 1.35 s after release"
+    "caption": "demo shot 1, t = 2.15 s after release"
    },
    {
     "path": "frames/ctx_03.png",
-    "caption": "demo shot 1, t = 1.60 s after release"
+    "caption": "demo shot 1, t = 2.82 s after release"
    },
    {
     "path": "frames/ctx_04.png",
@@ -78,15 +79,15 @@
    },
    {
     "path": "frames/ctx_05.png",
-    "caption": "demo shot 2, t = 0.70 s after release"
+    "caption": "demo shot 2, t = 1.50 s after release"
    },
    {
     "path": "frames/ctx_06.png",
-    "caption": "demo shot 2, t = 1.35 s after release"
+    "caption": "demo shot 2, t = 2.95 s after release"
    },
    {
     "path": "frames/ctx_07.png",
-    "caption": "demo shot 2, t = 1.63 s after release"
+    "caption": "demo shot 2, t = 4.04 s after release"
    }
   ]
  },
@@ -99,11 +100,11 @@
    "label": "tilt_minus20",
    "desc": "gravity tilted 20 deg further counter-clockwise",
    "params": {
-    "g": 24.437,
-    "tilt_deg": 0.27,
-    "wind": -4.802,
+    "g": 6.559,
+    "tilt_deg": -30.292,
+    "wind": -1.595,
     "drag": 0.0,
-    "k": 18.928
+    "k": 11.817
    },
    "correct": false
   },
@@ -111,14 +112,14 @@
    "letter": "B",
    "image": "option_B.png",
    "rollout_gif": "option_B.gif",
-   "label": "ordinary_physics",
-   "desc": "ordinary physics: straight-down gravity, no wind, no drag (same strength + launcher)",
+   "label": "heavy_drag",
+   "desc": "strong air drag",
    "params": {
-    "g": 24.437,
-    "tilt_deg": 0.0,
-    "wind": 0.0,
-    "drag": 0.0,
-    "k": 18.928
+    "g": 6.559,
+    "tilt_deg": -10.292,
+    "wind": -1.595,
+    "drag": 0.45,
+    "k": 11.817
    },
    "correct": false
   },
@@ -129,11 +130,11 @@
    "label": "gravity_x2",
    "desc": "gravity twice as strong",
    "params": {
-    "g": 48.875,
-    "tilt_deg": 20.27,
-    "wind": -4.802,
+    "g": 13.118,
+    "tilt_deg": -10.292,
+    "wind": -1.595,
     "drag": 0.0,
-    "k": 18.928
+    "k": 11.817
    },
    "correct": false
   },
@@ -144,11 +145,11 @@
    "label": "no_wind",
    "desc": "no wind",
    "params": {
-    "g": 24.437,
-    "tilt_deg": 20.27,
+    "g": 6.559,
+    "tilt_deg": -10.292,
     "wind": 0.0,
     "drag": 0.0,
-    "k": 18.928
+    "k": 11.817
    },
    "correct": false
   },
@@ -159,11 +160,11 @@
    "label": "true",
    "desc": "the world's real physics",
    "params": {
-    "g": 24.437,
-    "tilt_deg": 20.27,
-    "wind": -4.802,
+    "g": 6.559,
+    "tilt_deg": -10.292,
+    "wind": -1.595,
     "drag": 0.0,
-    "k": 18.928
+    "k": 11.817
    },
    "correct": true
   }
