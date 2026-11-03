@@ -1,0 +1,459 @@
+{
+ "id": "gravflip_0008",
+ "task": "gravflip",
+ "answer": "C",
+ "world": {
+  "gravity_dir_deg": -90.0,
+  "gravity_dir_name": "down",
+  "g": 52.651,
+  "elasticity": 0.572,
+  "friction": 0.745
+ },
+ "setup": {
+  "demo_shapes": [
+   {
+    "kind": "box",
+    "pos": [
+     8.052,
+     5.735
+    ],
+    "angle": 0.0,
+    "color": [
+     230,
+     85,
+     70
+    ],
+    "verts": [
+     [
+      -1.588,
+      -0.74
+     ],
+     [
+      1.588,
+      -0.74
+     ],
+     [
+      1.588,
+      0.74
+     ],
+     [
+      -1.588,
+      0.74
+     ]
+    ]
+   },
+   {
+    "kind": "circle",
+    "pos": [
+     7.998,
+     8.316
+    ],
+    "angle": 4.889,
+    "color": [
+     60,
+     130,
+     220
+    ],
+    "radius": 1.147
+   },
+   {
+    "kind": "triangle",
+    "pos": [
+     8.196,
+     10.579
+    ],
+    "angle": 6.158,
+    "color": [
+     245,
+     175,
+     40
+    ],
+    "verts": [
+     [
+      -0.841,
+      -0.535
+     ],
+     [
+      0.883,
+      -0.461
+     ],
+     [
+      -0.043,
+      0.995
+     ]
+    ]
+   },
+   {
+    "kind": "box",
+    "pos": [
+     8.239,
+     12.819
+    ],
+    "angle": 0.0,
+    "color": [
+     80,
+     175,
+     100
+    ],
+    "verts": [
+     [
+      -0.972,
+      -1.139
+     ],
+     [
+      0.972,
+      -1.139
+     ],
+     [
+      0.972,
+      1.139
+     ],
+     [
+      -0.972,
+      1.139
+     ]
+    ]
+   },
+   {
+    "kind": "box",
+    "pos": [
+     8.307,
+     14.953
+    ],
+    "angle": 0.0,
+    "color": [
+     160,
+     95,
+     200
+    ],
+    "verts": [
+     [
+      -0.855,
+      -0.824
+     ],
+     [
+      0.855,
+      -0.824
+     ],
+     [
+      0.855,
+      0.824
+     ],
+     [
+      -0.855,
+      0.824
+     ]
+    ]
+   },
+   {
+    "kind": "pentagon",
+    "pos": [
+     8.154,
+     16.881
+    ],
+    "angle": 4.069,
+    "color": [
+     240,
+     125,
+     175
+    ],
+    "verts": [
+     [
+      0.4,
+      0.826
+     ],
+     [
+      -0.662,
+      0.636
+     ],
+     [
+      -0.809,
+      -0.433
+     ],
+     [
+      0.162,
+      -0.903
+     ],
+     [
+      0.909,
+      -0.125
+     ]
+    ]
+   }
+  ],
+  "query_shapes": [
+   {
+    "kind": "box",
+    "pos": [
+     5.549,
+     11.751
+    ],
+    "angle": 5.073,
+    "color": [
+     230,
+     85,
+     70
+    ],
+    "verts": [
+     [
+      -1.458,
+      -0.989
+     ],
+     [
+      1.458,
+      -0.989
+     ],
+     [
+      1.458,
+      0.989
+     ],
+     [
+      -1.458,
+      0.989
+     ]
+    ]
+   },
+   {
+    "kind": "pentagon",
+    "pos": [
+     8.648,
+     10.656
+    ],
+    "angle": 1.3,
+    "color": [
+     60,
+     130,
+     220
+    ],
+    "verts": [
+     [
+      -0.168,
+      -1.176
+     ],
+     [
+      1.066,
+      -0.523
+     ],
+     [
+      0.827,
+      0.852
+     ],
+     [
+      -0.555,
+      1.05
+     ],
+     [
+      -1.17,
+      -0.203
+     ]
+    ]
+   },
+   {
+    "kind": "circle",
+    "pos": [
+     10.742,
+     11.087
+    ],
+    "angle": 5.787,
+    "color": [
+     245,
+     175,
+     40
+    ],
+    "radius": 0.756
+   },
+   {
+    "kind": "pentagon",
+    "pos": [
+     12.917,
+     10.935
+    ],
+    "angle": 3.087,
+    "color": [
+     80,
+     175,
+     100
+    ],
+    "verts": [
+     [
+      -1.241,
+      0.264
+     ],
+     [
+      -0.635,
+      -1.099
+     ],
+     [
+      0.849,
+      -0.943
+     ],
+     [
+      1.159,
+      0.516
+     ],
+     [
+      -0.132,
+      1.262
+     ]
+    ]
+   },
+   {
+    "kind": "box",
+    "pos": [
+     15.888,
+     11.759
+    ],
+    "angle": 1.062,
+    "color": [
+     160,
+     95,
+     200
+    ],
+    "verts": [
+     [
+      -1.459,
+      -0.529
+     ],
+     [
+      1.459,
+      -0.529
+     ],
+     [
+      1.459,
+      0.529
+     ],
+     [
+      -1.459,
+      0.529
+     ]
+    ]
+   }
+  ],
+  "t_levitate": 0.6,
+  "t_demo_after": 2.6,
+  "t_query": 1.5
+ },
+ "prompt": {
+  "intro": "This is a 2D simulated world inside a closed box with solid walls. Its physics may be very different from Earth's. Gravity starts switched off so the shapes float, then it switches on, but it can point in any direction (sideways, up, diagonal) and can be weak or strong. How bouncy and how slippery things are is also unknown. Grid squares are 1 m. You are shown a demo video of some shapes floating and then gravity switching on.",
+  "question": "The query image shows a new set of floating shapes in the same world. Gravity will switch on exactly as it did in the demo. Which candidate shows the scene 1.5 s after gravity switches on? In the candidates, faint outlines mark where each shape started and thin lines trace the path of each shape's center."
+ },
+ "context": {
+  "video_gif": "context.gif",
+  "video_mp4": "context.mp4",
+  "fps": 20,
+  "n_frames": 65,
+  "summary": "context_summary.png",
+  "keyframes": [
+   {
+    "path": "frames/ctx_00.png",
+    "caption": "t = 0.00 s, gravity off"
+   },
+   {
+    "path": "frames/ctx_01.png",
+    "caption": "gravity on for 0.15 s"
+   },
+   {
+    "path": "frames/ctx_02.png",
+    "caption": "gravity on for 0.55 s"
+   },
+   {
+    "path": "frames/ctx_03.png",
+    "caption": "gravity on for 0.95 s"
+   },
+   {
+    "path": "frames/ctx_04.png",
+    "caption": "gravity on for 1.35 s"
+   },
+   {
+    "path": "frames/ctx_05.png",
+    "caption": "gravity on for 1.80 s"
+   },
+   {
+    "path": "frames/ctx_06.png",
+    "caption": "gravity on for 2.20 s"
+   },
+   {
+    "path": "frames/ctx_07.png",
+    "caption": "gravity on for 2.60 s"
+   }
+  ]
+ },
+ "query": "query.png",
+ "options": [
+  {
+   "letter": "A",
+   "image": "option_A.png",
+   "rollout_gif": "option_A.gif",
+   "label": "gravity_x0.2",
+   "desc": "gravity 5x weaker",
+   "params": {
+    "gravity_dir_deg": -90.0,
+    "gravity_dir_name": "down",
+    "g": 10.53,
+    "elasticity": 0.572,
+    "friction": 0.745
+   },
+   "correct": false
+  },
+  {
+   "letter": "B",
+   "image": "option_B.png",
+   "rollout_gif": "option_B.gif",
+   "label": "dir_opposite",
+   "desc": "gravity pointing the opposite way",
+   "params": {
+    "gravity_dir_deg": 90.0,
+    "gravity_dir_name": "down",
+    "g": 52.651,
+    "elasticity": 0.572,
+    "friction": 0.745
+   },
+   "correct": false
+  },
+  {
+   "letter": "C",
+   "image": "option_C.png",
+   "rollout_gif": "option_C.gif",
+   "label": "true",
+   "desc": "the world's real physics",
+   "params": {
+    "gravity_dir_deg": -90.0,
+    "gravity_dir_name": "down",
+    "g": 52.651,
+    "elasticity": 0.572,
+    "friction": 0.745
+   },
+   "correct": true
+  },
+  {
+   "letter": "D",
+   "image": "option_D.png",
+   "rollout_gif": "option_D.gif",
+   "label": "dir_rot_ccw90",
+   "desc": "gravity rotated 90 deg counter-clockwise",
+   "params": {
+    "gravity_dir_deg": 0.0,
+    "gravity_dir_name": "down",
+    "g": 52.651,
+    "elasticity": 0.572,
+    "friction": 0.745
+   },
+   "correct": false
+  },
+  {
+   "letter": "E",
+   "image": "option_E.png",
+   "rollout_gif": "option_E.gif",
+   "label": "super_bouncy",
+   "desc": "shapes are super bouncy",
+   "params": {
+    "gravity_dir_deg": -90.0,
+    "gravity_dir_name": "down",
+    "g": 52.651,
+    "elasticity": 0.97,
+    "friction": 0.745
+   },
+   "correct": false
+  }
+ ]
+}

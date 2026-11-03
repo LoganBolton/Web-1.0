@@ -1,0 +1,171 @@
+{
+ "id": "slingshot_0008",
+ "task": "slingshot",
+ "answer": "A",
+ "world": {
+  "g": 16.209,
+  "tilt_deg": -26.795,
+  "wind": 5.362,
+  "drag": 0.0,
+  "k": 17.895
+ },
+ "setup": {
+  "demos": [
+   {
+    "x": 3.185094024632951,
+    "h": 0.0,
+    "angle": 69.0,
+    "pull": 0.8,
+    "landing": [
+     9.401954809804224,
+     0.35
+    ],
+    "flight_time": 1.888
+   },
+   {
+    "x": 11.339866691141014,
+    "h": 0.0,
+    "angle": 26.0,
+    "pull": 0.86,
+    "landing": [
+     24.293524329449248,
+     0.35
+    ],
+    "flight_time": 1.009
+   }
+  ],
+  "query_shot": {
+   "x": 18.457683125498495,
+   "h": 0.0,
+   "angle": 69.0,
+   "pull": 1.11
+  },
+  "true_landing": [
+   30.37332663758217,
+   0.35
+  ]
+ },
+ "prompt": {
+  "intro": "This is a 2D simulated world whose physics may be different from Earth's. Gravity can be stronger, weaker or tilted, there can be wind and air drag, and the slingshot's strength is unknown. Launch speed is proportional to how far the ball is pulled back. Grid squares are 1 m. You are shown 2 demo launches from slingshots placed at different spots. The pull distance and launch angle are written above each slingshot, and the grey arrow shows the launch direction.",
+  "question": "A new slingshot in the same world is pulled back as shown in the query image. Which candidate image shows what will actually happen (the full flight path and where the ball lands)? Trail dots are 0.1 s apart in every image."
+ },
+ "context": {
+  "video_gif": "context.gif",
+  "video_mp4": "context.mp4",
+  "fps": 20,
+  "n_frames": 97,
+  "summary": "context_summary.png",
+  "keyframes": [
+   {
+    "path": "frames/ctx_00.png",
+    "caption": "demo shot 1, t = 0.00 s after release"
+   },
+   {
+    "path": "frames/ctx_01.png",
+    "caption": "demo shot 1, t = 0.75 s after release"
+   },
+   {
+    "path": "frames/ctx_02.png",
+    "caption": "demo shot 1, t = 1.55 s after release"
+   },
+   {
+    "path": "frames/ctx_03.png",
+    "caption": "demo shot 1, t = 1.89 s after release"
+   },
+   {
+    "path": "frames/ctx_04.png",
+    "caption": "demo shot 2, t = 0.00 s after release"
+   },
+   {
+    "path": "frames/ctx_05.png",
+    "caption": "demo shot 2, t = 0.50 s after release"
+   },
+   {
+    "path": "frames/ctx_06.png",
+    "caption": "demo shot 2, t = 0.95 s after release"
+   },
+   {
+    "path": "frames/ctx_07.png",
+    "caption": "demo shot 2, t = 1.01 s after release"
+   }
+  ]
+ },
+ "query": "query.png",
+ "options": [
+  {
+   "letter": "A",
+   "image": "option_A.png",
+   "rollout_gif": "option_A.gif",
+   "label": "true",
+   "desc": "the world's real physics",
+   "params": {
+    "g": 16.209,
+    "tilt_deg": -26.795,
+    "wind": 5.362,
+    "drag": 0.0,
+    "k": 17.895
+   },
+   "correct": true
+  },
+  {
+   "letter": "B",
+   "image": "option_B.png",
+   "rollout_gif": "option_B.gif",
+   "label": "gravity_x2",
+   "desc": "gravity twice as strong",
+   "params": {
+    "g": 32.418,
+    "tilt_deg": -26.795,
+    "wind": 5.362,
+    "drag": 0.0,
+    "k": 17.895
+   },
+   "correct": false
+  },
+  {
+   "letter": "C",
+   "image": "option_C.png",
+   "rollout_gif": "option_C.gif",
+   "label": "no_wind",
+   "desc": "no wind",
+   "params": {
+    "g": 16.209,
+    "tilt_deg": -26.795,
+    "wind": 0.0,
+    "drag": 0.0,
+    "k": 17.895
+   },
+   "correct": false
+  },
+  {
+   "letter": "D",
+   "image": "option_D.png",
+   "rollout_gif": "option_D.gif",
+   "label": "tilt_minus20",
+   "desc": "gravity tilted 20 deg further counter-clockwise",
+   "params": {
+    "g": 16.209,
+    "tilt_deg": -46.795,
+    "wind": 5.362,
+    "drag": 0.0,
+    "k": 17.895
+   },
+   "correct": false
+  },
+  {
+   "letter": "E",
+   "image": "option_E.png",
+   "rollout_gif": "option_E.gif",
+   "label": "ordinary_physics",
+   "desc": "ordinary physics: straight-down gravity, no wind, no drag (same strength + launcher)",
+   "params": {
+    "g": 16.209,
+    "tilt_deg": 0.0,
+    "wind": 0.0,
+    "drag": 0.0,
+    "k": 17.895
+   },
+   "correct": false
+  }
+ ]
+}

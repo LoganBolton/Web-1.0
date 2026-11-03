@@ -1,0 +1,155 @@
+{
+ "id": "bounce_0008",
+ "task": "bounce",
+ "answer": "A",
+ "world": {
+  "g": 8.889,
+  "tilt_deg": 0.0,
+  "restitution": 0.901,
+  "drag": 0.0,
+  "slip": 0.954
+ },
+ "setup": {
+  "start_state": [
+   4.906,
+   8.616,
+   -4.943,
+   -5.557
+  ],
+  "t_context": 3.5,
+  "t_predict": 1.5,
+  "state_at_cut": [
+   11.373,
+   0.92,
+   4.051,
+   9.864
+  ],
+  "true_end": [
+   17.449,
+   5.712
+  ]
+ },
+ "prompt": {
+  "intro": "This is a 2D simulated world whose physics may be different from Earth's. Gravity can be any strength and may not point straight down, the ball's bounciness and air drag are unknown, and the walls of the box are solid. Grid squares are 1 m. You are shown a video of a ball moving for 3.5 s.",
+  "question": "Each candidate image shows a possible path for the next 1.5 s (red dots every 0.1 s, the solid blue ball is where it ends up). Which candidate is what will actually happen in this world?"
+ },
+ "context": {
+  "video_gif": "context.gif",
+  "video_mp4": "context.mp4",
+  "fps": 20,
+  "n_frames": 71,
+  "summary": "context_summary.png",
+  "keyframes": [
+   {
+    "path": "frames/ctx_00.png",
+    "caption": "t = 0.00 s"
+   },
+   {
+    "path": "frames/ctx_01.png",
+    "caption": "t = 0.50 s"
+   },
+   {
+    "path": "frames/ctx_02.png",
+    "caption": "t = 1.00 s"
+   },
+   {
+    "path": "frames/ctx_03.png",
+    "caption": "t = 1.50 s"
+   },
+   {
+    "path": "frames/ctx_04.png",
+    "caption": "t = 2.00 s"
+   },
+   {
+    "path": "frames/ctx_05.png",
+    "caption": "t = 2.50 s"
+   },
+   {
+    "path": "frames/ctx_06.png",
+    "caption": "t = 3.00 s"
+   },
+   {
+    "path": "frames/ctx_07.png",
+    "caption": "t = 3.50 s"
+   }
+  ]
+ },
+ "query": "query.png",
+ "options": [
+  {
+   "letter": "A",
+   "image": "option_A.png",
+   "rollout_gif": "option_A.gif",
+   "label": "true",
+   "desc": "the world's real physics",
+   "params": {
+    "g": 8.889,
+    "tilt_deg": 0.0,
+    "restitution": 0.901,
+    "drag": 0.0,
+    "slip": 0.954
+   },
+   "correct": true
+  },
+  {
+   "letter": "B",
+   "image": "option_B.png",
+   "rollout_gif": "option_B.gif",
+   "label": "gravity_x2.5",
+   "desc": "gravity 2.5x stronger",
+   "params": {
+    "g": 22.222,
+    "tilt_deg": 0.0,
+    "restitution": 0.901,
+    "drag": 0.0,
+    "slip": 0.954
+   },
+   "correct": false
+  },
+  {
+   "letter": "C",
+   "image": "option_C.png",
+   "rollout_gif": "option_C.gif",
+   "label": "tilt_plus35",
+   "desc": "gravity tilted 35 deg further clockwise",
+   "params": {
+    "g": 8.889,
+    "tilt_deg": 35.0,
+    "restitution": 0.901,
+    "drag": 0.0,
+    "slip": 0.954
+   },
+   "correct": false
+  },
+  {
+   "letter": "D",
+   "image": "option_D.png",
+   "rollout_gif": "option_D.gif",
+   "label": "gravity_x0.35",
+   "desc": "gravity about 1/3 as strong",
+   "params": {
+    "g": 3.111,
+    "tilt_deg": 0.0,
+    "restitution": 0.901,
+    "drag": 0.0,
+    "slip": 0.954
+   },
+   "correct": false
+  },
+  {
+   "letter": "E",
+   "image": "option_E.png",
+   "rollout_gif": "option_E.gif",
+   "label": "gravity_up",
+   "desc": "gravity reversed",
+   "params": {
+    "g": 8.889,
+    "tilt_deg": 180.0,
+    "restitution": 0.901,
+    "drag": 0.0,
+    "slip": 0.954
+   },
+   "correct": false
+  }
+ ]
+}

@@ -1,0 +1,171 @@
+{
+ "id": "slingshot_0007",
+ "task": "slingshot",
+ "answer": "B",
+ "world": {
+  "g": 8.523,
+  "tilt_deg": -29.661,
+  "wind": 0.0,
+  "drag": 0.0,
+  "k": 13.316
+ },
+ "setup": {
+  "demos": [
+   {
+    "x": 12.450860149265516,
+    "h": 1.2467457140921026,
+    "angle": 25.0,
+    "pull": 1.07,
+    "landing": [
+     29.284584394831036,
+     0.35
+    ],
+    "flight_time": 1.884
+   },
+   {
+    "x": 19.054596770923318,
+    "h": 0.0,
+    "angle": 28.0,
+    "pull": 0.89,
+    "landing": [
+     30.37603334326108,
+     0.35
+    ],
+    "flight_time": 1.596
+   }
+  ],
+  "query_shot": {
+   "x": 2.800879352921464,
+   "h": 2.110018188256354,
+   "angle": 41.0,
+   "pull": 1.26
+  },
+  "true_landing": [
+   21.721324211624413,
+   0.35
+  ]
+ },
+ "prompt": {
+  "intro": "This is a 2D simulated world whose physics may be different from Earth's. Gravity can be stronger, weaker or tilted, there can be wind and air drag, and the slingshot's strength is unknown. Launch speed is proportional to how far the ball is pulled back. Grid squares are 1 m. You are shown 2 demo launches from slingshots placed at different spots. The pull distance and launch angle are written above each slingshot, and the grey arrow shows the launch direction.",
+  "question": "A new slingshot in the same world is pulled back as shown in the query image. Which candidate image shows what will actually happen (the full flight path and where the ball lands)? Trail dots are 0.1 s apart in every image."
+ },
+ "context": {
+  "video_gif": "context.gif",
+  "video_mp4": "context.mp4",
+  "fps": 20,
+  "n_frames": 108,
+  "summary": "context_summary.png",
+  "keyframes": [
+   {
+    "path": "frames/ctx_00.png",
+    "caption": "demo shot 1, t = 0.00 s after release"
+   },
+   {
+    "path": "frames/ctx_01.png",
+    "caption": "demo shot 1, t = 0.75 s after release"
+   },
+   {
+    "path": "frames/ctx_02.png",
+    "caption": "demo shot 1, t = 1.55 s after release"
+   },
+   {
+    "path": "frames/ctx_03.png",
+    "caption": "demo shot 1, t = 1.88 s after release"
+   },
+   {
+    "path": "frames/ctx_04.png",
+    "caption": "demo shot 2, t = 0.00 s after release"
+   },
+   {
+    "path": "frames/ctx_05.png",
+    "caption": "demo shot 2, t = 0.65 s after release"
+   },
+   {
+    "path": "frames/ctx_06.png",
+    "caption": "demo shot 2, t = 1.35 s after release"
+   },
+   {
+    "path": "frames/ctx_07.png",
+    "caption": "demo shot 2, t = 1.60 s after release"
+   }
+  ]
+ },
+ "query": "query.png",
+ "options": [
+  {
+   "letter": "A",
+   "image": "option_A.png",
+   "rollout_gif": "option_A.gif",
+   "label": "wind_left",
+   "desc": "wind pushing left",
+   "params": {
+    "g": 8.523,
+    "tilt_deg": -29.661,
+    "wind": -2.131,
+    "drag": 0.0,
+    "k": 13.316
+   },
+   "correct": false
+  },
+  {
+   "letter": "B",
+   "image": "option_B.png",
+   "rollout_gif": "option_B.gif",
+   "label": "true",
+   "desc": "the world's real physics",
+   "params": {
+    "g": 8.523,
+    "tilt_deg": -29.661,
+    "wind": 0.0,
+    "drag": 0.0,
+    "k": 13.316
+   },
+   "correct": true
+  },
+  {
+   "letter": "C",
+   "image": "option_C.png",
+   "rollout_gif": "option_C.gif",
+   "label": "launcher_x1.3",
+   "desc": "launcher 30% stronger",
+   "params": {
+    "g": 8.523,
+    "tilt_deg": -29.661,
+    "wind": 0.0,
+    "drag": 0.0,
+    "k": 17.311
+   },
+   "correct": false
+  },
+  {
+   "letter": "D",
+   "image": "option_D.png",
+   "rollout_gif": "option_D.gif",
+   "label": "tilt_plus20",
+   "desc": "gravity tilted 20 deg further clockwise",
+   "params": {
+    "g": 8.523,
+    "tilt_deg": -9.661,
+    "wind": 0.0,
+    "drag": 0.0,
+    "k": 13.316
+   },
+   "correct": false
+  },
+  {
+   "letter": "E",
+   "image": "option_E.png",
+   "rollout_gif": "option_E.gif",
+   "label": "launcher_x0.75",
+   "desc": "launcher 25% weaker",
+   "params": {
+    "g": 8.523,
+    "tilt_deg": -29.661,
+    "wind": 0.0,
+    "drag": 0.0,
+    "k": 9.987
+   },
+   "correct": false
+  }
+ ]
+}

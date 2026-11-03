@@ -1,0 +1,171 @@
+{
+ "id": "slingshot_0005",
+ "task": "slingshot",
+ "answer": "D",
+ "world": {
+  "g": 12.245,
+  "tilt_deg": -10.728,
+  "wind": -2.992,
+  "drag": 0.476,
+  "k": 15.363
+ },
+ "setup": {
+  "demos": [
+   {
+    "x": 9.614477213174784,
+    "h": 3.3614827111490184,
+    "angle": 20.0,
+    "pull": 1.16,
+    "landing": [
+     22.72033781925846,
+     0.35
+    ],
+    "flight_time": 1.463
+   },
+   {
+    "x": 3.338328957106655,
+    "h": 3.0829782284893064,
+    "angle": 28.0,
+    "pull": 1.3,
+    "landing": [
+     18.105905006260326,
+     0.35
+    ],
+    "flight_time": 1.803
+   }
+  ],
+  "query_shot": {
+   "x": 17.04792216244207,
+   "h": 5.311585789559121,
+   "angle": 36.0,
+   "pull": 1.04
+  },
+  "true_landing": [
+   25.846759742323727,
+   0.35
+  ]
+ },
+ "prompt": {
+  "intro": "This is a 2D simulated world whose physics may be different from Earth's. Gravity can be stronger, weaker or tilted, there can be wind and air drag, and the slingshot's strength is unknown. Launch speed is proportional to how far the ball is pulled back. Grid squares are 1 m. You are shown 2 demo launches from slingshots placed at different spots. The pull distance and launch angle are written above each slingshot, and the grey arrow shows the launch direction.",
+  "question": "A new slingshot in the same world is pulled back as shown in the query image. Which candidate image shows what will actually happen (the full flight path and where the ball lands)? Trail dots are 0.1 s apart in every image."
+ },
+ "context": {
+  "video_gif": "context.gif",
+  "video_mp4": "context.mp4",
+  "fps": 20,
+  "n_frames": 105,
+  "summary": "context_summary.png",
+  "keyframes": [
+   {
+    "path": "frames/ctx_00.png",
+    "caption": "demo shot 1, t = 0.00 s after release"
+   },
+   {
+    "path": "frames/ctx_01.png",
+    "caption": "demo shot 1, t = 0.65 s after release"
+   },
+   {
+    "path": "frames/ctx_02.png",
+    "caption": "demo shot 1, t = 1.25 s after release"
+   },
+   {
+    "path": "frames/ctx_03.png",
+    "caption": "demo shot 1, t = 1.46 s after release"
+   },
+   {
+    "path": "frames/ctx_04.png",
+    "caption": "demo shot 2, t = 0.00 s after release"
+   },
+   {
+    "path": "frames/ctx_05.png",
+    "caption": "demo shot 2, t = 0.75 s after release"
+   },
+   {
+    "path": "frames/ctx_06.png",
+    "caption": "demo shot 2, t = 1.50 s after release"
+   },
+   {
+    "path": "frames/ctx_07.png",
+    "caption": "demo shot 2, t = 1.80 s after release"
+   }
+  ]
+ },
+ "query": "query.png",
+ "options": [
+  {
+   "letter": "A",
+   "image": "option_A.png",
+   "rollout_gif": "option_A.gif",
+   "label": "gravity_x0.5",
+   "desc": "gravity half as strong",
+   "params": {
+    "g": 6.122,
+    "tilt_deg": -10.728,
+    "wind": -2.992,
+    "drag": 0.476,
+    "k": 15.363
+   },
+   "correct": false
+  },
+  {
+   "letter": "B",
+   "image": "option_B.png",
+   "rollout_gif": "option_B.gif",
+   "label": "launcher_x1.3",
+   "desc": "launcher 30% stronger",
+   "params": {
+    "g": 12.245,
+    "tilt_deg": -10.728,
+    "wind": -2.992,
+    "drag": 0.476,
+    "k": 19.973
+   },
+   "correct": false
+  },
+  {
+   "letter": "C",
+   "image": "option_C.png",
+   "rollout_gif": "option_C.gif",
+   "label": "gravity_x2",
+   "desc": "gravity twice as strong",
+   "params": {
+    "g": 24.49,
+    "tilt_deg": -10.728,
+    "wind": -2.992,
+    "drag": 0.476,
+    "k": 15.363
+   },
+   "correct": false
+  },
+  {
+   "letter": "D",
+   "image": "option_D.png",
+   "rollout_gif": "option_D.gif",
+   "label": "true",
+   "desc": "the world's real physics",
+   "params": {
+    "g": 12.245,
+    "tilt_deg": -10.728,
+    "wind": -2.992,
+    "drag": 0.476,
+    "k": 15.363
+   },
+   "correct": true
+  },
+  {
+   "letter": "E",
+   "image": "option_E.png",
+   "rollout_gif": "option_E.gif",
+   "label": "tilt_minus20",
+   "desc": "gravity tilted 20 deg further counter-clockwise",
+   "params": {
+    "g": 12.245,
+    "tilt_deg": -30.728,
+    "wind": -2.992,
+    "drag": 0.476,
+    "k": 15.363
+   },
+   "correct": false
+  }
+ ]
+}

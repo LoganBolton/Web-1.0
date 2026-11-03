@@ -1,0 +1,405 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Weird Physics Bench</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: instrument-panel shell. Item rail on the left, one experiment at a time on the right:
+   context -> query -> five candidate futures -> reveal. */
+:root {
+  --bg: #eef0f2;
+  --panel: #ffffff;
+  --ink: #1d2329;
+  --muted: #5f6b76;
+  --line: #d5dbe1;
+  --accent: #2459c9;
+  --accent-soft: #e3ebfb;
+  --good: #1e8a4c;
+  --good-soft: #dff3e6;
+  --bad: #c2392b;
+  --bad-soft: #fbe5e2;
+  --font-display: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", sans-serif;
+  --font-body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14181c; --panel: #1c2227; --ink: #e4e8ec; --muted: #9aa6b1; --line: #2e363d;
+    --accent: #7fa6ff; --accent-soft: #1f2c47; --good: #4fc782; --good-soft: #173225;
+    --bad: #f07a6c; --bad-soft: #3a1f1c; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14181c; --panel: #1c2227; --ink: #e4e8ec; --muted: #9aa6b1; --line: #2e363d;
+  --accent: #7fa6ff; --accent-soft: #1f2c47; --good: #4fc782; --good-soft: #173225;
+  --bad: #f07a6c; --bad-soft: #3a1f1c; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--bg); color: var(--ink);
+  font: 15px/1.5 var(--font-body);
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10;
+  background: var(--panel);
+}
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+header.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: var(--panel); border-bottom: 1px solid var(--line);
+  padding-block: 10px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px;
+}
+.brand { font: 700 24px/1 var(--font-display); letter-spacing: 0.01em; margin: 0; }
+.brand small { font: 500 13px var(--font-mono); color: var(--muted); margin-left: 8px; letter-spacing: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  border: 1px solid var(--line); background: transparent; border-radius: 999px;
+  padding: 3px 12px; cursor: pointer; font-size: 13px;
+}
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--panel); }
+.chip[aria-pressed="true"] .muted { color: inherit; opacity: 0.8; }
+.spacer { flex: 1; }
+.score { font: 500 13px var(--font-mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.toggle { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; cursor: pointer; }
+
+.shell {
+  display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 18px;
+  padding-block: 16px 40px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  max-width: 1500px; margin: 0 auto;
+}
+aside.rail {
+  position: sticky; top: calc(env(safe-area-inset-top, 0px) + 70px); align-self: start;
+  max-height: calc(100vh - 90px); overflow: auto;
+  background: var(--panel); border: 1px solid var(--line); border-radius: var(--r);
+}
+.rail-group { font: 600 12px var(--font-body); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); padding: 10px 12px 4px; }
+.rail-item {
+  display: flex; align-items: center; gap: 8px; width: 100%; text-align: left;
+  border: 0; background: transparent; padding: 5px 12px; cursor: pointer;
+  font: 13px var(--font-mono);
+}
+.rail-item:hover { background: var(--accent-soft); }
+.rail-item[aria-current="true"] { background: var(--accent-soft); color: var(--accent); font-weight: 500; }
+.dot { width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid var(--muted); flex: none; }
+.dot.good { background: var(--good); border-color: var(--good); }
+.dot.bad { background: var(--bad); border-color: var(--bad); }
+.rail-item .mk { margin-left: auto; color: var(--muted); font-size: 11px; }
+
+main { min-width: 0; display: grid; gap: 18px; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; min-width: 0; }
+.panel h3 {
+  margin: 0 0 10px; font: 600 20px/1.1 var(--font-display); letter-spacing: 0.02em; text-transform: uppercase;
+  display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+}
+.panel h3 .sub { font: 400 13px var(--font-body); text-transform: none; color: var(--muted); letter-spacing: 0; }
+.titlebar { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px; }
+.titlebar h2 { margin: 0; font: 700 32px/1 var(--font-display); text-wrap: balance; }
+.tag { font: 500 12px var(--font-mono); padding: 2px 8px; border-radius: 4px; background: var(--accent-soft); color: var(--accent); }
+.nav { margin-left: auto; display: flex; gap: 6px; }
+.btn { border: 1px solid var(--line); background: var(--panel); border-radius: var(--r); padding: 4px 12px; cursor: pointer; font-size: 13px; }
+.btn:hover { border-color: var(--accent); }
+.prose { max-width: 75ch; color: var(--ink); margin: 0 0 12px; }
+.muted { color: var(--muted); }
+
+.ctx { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.tabs { display: flex; gap: 4px; margin-bottom: 8px; }
+.tabs button { border: 1px solid var(--line); background: transparent; padding: 3px 10px; border-radius: 4px; cursor: pointer; font-size: 13px; }
+.tabs button[aria-selected="true"] { background: var(--ink); color: var(--panel); border-color: var(--ink); }
+.sim { width: 100%; height: auto; display: block; border-radius: 4px; border: 1px solid var(--line); background: #f7f5f0; }
+.frames { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+.frames figure { margin: 0; }
+.frames figcaption, .cap { font: 12px var(--font-mono); color: var(--muted); margin-top: 3px; }
+
+.options { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+.video { max-width: 760px; }
+.opt {
+  position: relative; border: 2px solid var(--line); border-radius: var(--r); background: var(--panel);
+  padding: 8px; cursor: pointer; text-align: left; display: grid; gap: 6px; align-content: start;
+}
+.opt:hover { border-color: var(--accent); }
+.opt .letter {
+  font: 700 22px/1 var(--font-display); display: flex; align-items: center; gap: 8px;
+}
+.opt .verdict { font: 500 12px var(--font-mono); padding: 2px 6px; border-radius: 4px; }
+.opt.correct { border-color: var(--good); background: var(--good-soft); }
+.opt.correct .verdict { background: var(--good); color: var(--panel); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .verdict { background: var(--bad); color: var(--panel); }
+.opt .desc { font-size: 13px; color: var(--muted); min-height: 1.5em; }
+.opt .row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.picks { display: flex; gap: 4px; flex-wrap: wrap; }
+.pick { font: 500 11px var(--font-mono); background: var(--accent-soft); color: var(--accent); border-radius: 3px; padding: 1px 6px; }
+
+.tablewrap { overflow-x: auto; }
+table { border-collapse: collapse; font: 13px var(--font-mono); font-variant-numeric: tabular-nums; min-width: 100%; }
+th, td { border-bottom: 1px solid var(--line); padding: 5px 10px; text-align: left; white-space: nowrap; }
+th { font: 600 12px var(--font-body); color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+td.changed { color: var(--bad); font-weight: 500; }
+tr.truth td { color: var(--good); font-weight: 500; }
+
+details.resp { border-top: 1px solid var(--line); padding-top: 8px; margin-top: 8px; }
+details.resp summary { cursor: pointer; font: 13px var(--font-mono); }
+details.resp pre { white-space: pre-wrap; font: 12px/1.5 var(--font-mono); background: var(--bg); padding: 10px; border-radius: 4px; max-height: 420px; overflow: auto; }
+.empty { padding: 40px; text-align: center; color: var(--muted); }
+kbd { font: 11px var(--font-mono); border: 1px solid var(--line); border-radius: 3px; padding: 0 4px; }
+
+@media (max-width: 860px) {
+  .shell { grid-template-columns: minmax(0, 1fr); }
+  aside.rail { position: static; max-height: 220px; }
+  .ctx { grid-template-columns: minmax(0, 1fr); }
+  .nav { margin-left: 0; }
+  header.top { position: static; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .opt { transition: border-color .15s, background-color .15s; }
+}
+</style>
+
+<header class="top">
+  <h1 class="brand">Weird Physics Bench<small id="count"></small></h1>
+  <div class="chips" id="taskChips" role="group" aria-label="Filter by task"></div>
+  <div class="spacer"></div>
+  <label class="toggle"><input type="checkbox" id="revealAll"> Show answers</label>
+  <span class="score" id="score"></span>
+  <button class="btn" id="resetScore" type="button">Reset my picks</button>
+</header>
+
+<div class="shell">
+  <aside class="rail" id="rail" aria-label="Items"></aside>
+  <main id="main"><div class="panel empty">Loading items…</div></main>
+</div>
+
+<script>window.WEIRDPHYS_MANIFEST = window.WEIRDPHYS_MANIFEST || null;</script>
+<script src="data/manifest.js"></script>
+<script src="results/results.js" onerror="void 0"></script>
+<script>
+(function () {
+  const TASK_NAMES = { slingshot: "Slingshot", bounce: "Bouncing ball", gravflip: "Gravity flip" };
+  const DATA = "data/";
+  let items = [];
+  let results = window.WEIRDPHYS_RESULTS || {};
+  let filter = "all";
+  let current = null;
+  let picks = {};
+  try { picks = JSON.parse(localStorage.getItem("wpb-picks") || "{}"); } catch (e) { picks = {}; }
+  const savePicks = () => { try { localStorage.setItem("wpb-picks", JSON.stringify(picks)); } catch (e) {} };
+
+  const $ = (s) => document.querySelector(s);
+  const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const hashOf = (id) => id.replace(/_/g, "-");
+  const fmt = (v) => typeof v === "number" ? (Math.abs(v) >= 100 ? v.toFixed(0) : +v.toFixed(3)) : esc(v);
+
+  async function load() {
+    if (window.WEIRDPHYS_MANIFEST) return window.WEIRDPHYS_MANIFEST;
+    try {
+      const txt = await (await fetch(DATA + "manifest.jsonl")).text();
+      return txt.split("\n").filter(Boolean).map((l) => JSON.parse(l));
+    } catch (e) { return []; }
+  }
+
+  function visible() { return items.filter((it) => filter === "all" || it.task === filter); }
+  function revealed(it) { return $("#revealAll").checked || picks[it.id] != null; }
+
+  function renderChips() {
+    const tasks = ["all", ...Object.keys(TASK_NAMES).filter((t) => items.some((i) => i.task === t))];
+    $("#taskChips").innerHTML = tasks.map((t) => {
+      const n = t === "all" ? items.length : items.filter((i) => i.task === t).length;
+      return `<button class="chip" type="button" data-task="${t}" aria-pressed="${t === filter}">${t === "all" ? "All" : TASK_NAMES[t]} <span class="muted">${n}</span></button>`;
+    }).join("");
+    $("#taskChips").querySelectorAll(".chip").forEach((b) => b.onclick = () => {
+      filter = b.dataset.task; renderChips(); renderRail();
+      const v = visible(); if (v.length && (!current || !v.includes(current))) go(v[0]);
+    });
+  }
+
+  function renderScore() {
+    const answered = items.filter((i) => picks[i.id] != null);
+    const right = answered.filter((i) => picks[i.id] === i.answer).length;
+    $("#score").textContent = answered.length ? `you: ${right}/${answered.length} correct` : "click an option to answer";
+    $("#count").textContent = `${items.length} items`;
+  }
+
+  function renderRail() {
+    const v = visible();
+    let html = "";
+    for (const t of Object.keys(TASK_NAMES)) {
+      const group = v.filter((i) => i.task === t);
+      if (!group.length) continue;
+      html += `<div class="rail-group">${TASK_NAMES[t]}</div>`;
+      html += group.map((it) => {
+        const p = picks[it.id];
+        const cls = p == null ? "" : p === it.answer ? "good" : "bad";
+        const models = Object.values(results).map((r) => r[it.id]).filter(Boolean);
+        const mk = models.length ? `${models.filter((m) => m.correct).length}/${models.length}` : "";
+        return `<button class="rail-item" type="button" data-id="${it.id}" aria-current="${current === it}">
+          <span class="dot ${cls}"></span>${esc(it.id.replace(/^[a-z]+_/, "#"))}<span class="mk" title="model runs correct">${mk}</span></button>`;
+      }).join("");
+    }
+    $("#rail").innerHTML = html || `<div class="empty">No items.</div>`;
+    $("#rail").querySelectorAll(".rail-item").forEach((b) => b.onclick = () => go(items.find((i) => i.id === b.dataset.id)));
+  }
+
+  function go(it) {
+    if (!it) return;
+    current = it;
+    if (location.hash.slice(1) !== hashOf(it.id)) history.replaceState(null, "", "#" + hashOf(it.id));
+    renderRail(); renderItem(); window.scrollTo({ top: 0 });
+  }
+
+  function step(d) {
+    const v = visible(); const i = v.indexOf(current);
+    if (i >= 0 && v[i + d]) go(v[i + d]);
+  }
+
+  function paramTable(it) {
+    const keys = Object.keys(it.world).filter((k) => typeof it.world[k] === "number");
+    const rows = it.options.map((o) => {
+      const cells = keys.map((k) => {
+        const changed = typeof o.params[k] === "number" && Math.abs(o.params[k] - it.world[k]) > 1e-6;
+        return `<td class="${changed ? "changed" : ""}">${fmt(o.params[k])}</td>`;
+      }).join("");
+      return `<tr class="${o.correct ? "truth" : ""}"><td>${o.letter}</td><td>${esc(o.label)}</td>${cells}</tr>`;
+    }).join("");
+    return `<div class="tablewrap"><table><thead><tr><th>Opt</th><th>Physics</th>${keys.map((k) => `<th>${esc(k)}</th>`).join("")}</tr></thead><tbody>${rows}</tbody></table></div>
+      <p class="cap">Red values differ from this world's real physics. Units: m, s, m/s², degrees.</p>`;
+  }
+
+  function renderItem() {
+    const it = current; if (!it) return;
+    const dir = DATA + it.dir + "/";
+    const show = revealed(it);
+    const mine = picks[it.id];
+    const runs = Object.entries(results).filter(([, r]) => r[it.id]);
+    const ctx = it.context;
+
+    const worldChips = show
+      ? Object.entries(it.world).map(([k, v]) => `<span class="tag">${esc(k)} ${fmt(v)}</span>`).join(" ")
+      : `<span class="muted">Hidden physics. Answer or tick “Show answers” to see it.</span>`;
+
+    const options = it.options.map((o) => {
+      const modelPicks = runs.filter(([, r]) => r[it.id].pred === o.letter).map(([name]) => `<span class="pick" title="${esc(name)}">${esc(name.split("__")[0])}</span>`).join("");
+      let cls = "", verdict = "";
+      if (show) {
+        if (o.correct) { cls = "correct"; verdict = "real physics"; }
+        else if (mine === o.letter) { cls = "wrong"; verdict = "your pick"; }
+      }
+      const desc = show ? (o.correct ? "This world's actual physics." : esc(o.desc)) : "&nbsp;";
+      return `<div class="opt ${cls}" role="button" tabindex="0" data-letter="${o.letter}" aria-label="Option ${o.letter}">
+        <div class="letter">${o.letter}${verdict ? `<span class="verdict">${verdict}</span>` : ""}${mine === o.letter && o.correct ? `<span class="verdict">your pick</span>` : ""}</div>
+        <img class="sim" loading="lazy" src="${dir + o.image}" data-png="${dir + o.image}" data-gif="${o.rollout_gif ? dir + o.rollout_gif : ""}" alt="Candidate ${o.letter}">
+        <div class="desc">${desc}</div>
+        <div class="row">${o.rollout_gif ? `<button class="btn play" type="button">Play rollout</button>` : ""}<div class="picks">${modelPicks}</div></div>
+      </div>`;
+    }).join("");
+
+    const frames = ctx.keyframes.map((k) => `<figure><img class="sim" loading="lazy" src="${dir + k.path}" alt=""><figcaption>${esc(k.caption)}</figcaption></figure>`).join("");
+
+    const modelPanel = runs.length ? `<section class="panel"><h3>Model answers <span class="sub">${runs.length} run${runs.length > 1 ? "s" : ""}</span></h3>
+      ${runs.map(([name, r]) => { const x = r[it.id]; return `<details class="resp"><summary>${x.correct ? "✓" : "✗"} ${esc(name)}: picked ${esc(x.pred ?? "nothing")}${x.chosen_label && !x.correct ? ` (${esc(x.chosen_label)})` : ""}</summary><pre>${esc(x.response)}</pre></details>`; }).join("")}
+    </section>` : "";
+
+    $("#main").innerHTML = `
+      <section class="panel">
+        <div class="titlebar">
+          <h2>${esc(TASK_NAMES[it.task] || it.task)} ${esc(it.id.replace(/^[a-z]+_/, "#"))}</h2>
+          <span class="tag">${esc(it.id)}</span>
+          <div class="nav"><button class="btn" id="prev" type="button">← Prev</button><button class="btn" id="next" type="button">Next →</button></div>
+        </div>
+        <p style="margin:10px 0 0">${worldChips}</p>
+        <p class="cap" style="margin-top:8px">Keys: <kbd>A</kbd>–<kbd>E</kbd> answer · <kbd>←</kbd> <kbd>→</kbd> move between items</p>
+      </section>
+
+      <section class="panel">
+        <h3>1 · Context <span class="sub">what the model watches</span></h3>
+        <p class="prose">${esc(it.prompt.intro)}</p>
+        <div class="tabs" role="tablist">
+          <button type="button" role="tab" data-tab="video" aria-selected="true">Video</button>
+          <button type="button" role="tab" data-tab="summary" aria-selected="false">Summary still</button>
+          <button type="button" role="tab" data-tab="frames" aria-selected="false">Keyframes (${ctx.keyframes.length})</button>
+        </div>
+        <div data-pane="video" class="video"><img class="sim" src="${dir + ctx.video_gif}" alt="Context video"></div>
+        <div data-pane="summary" class="video" hidden><img class="sim" src="${dir + ctx.summary}" alt="Context summary"></div>
+        <div data-pane="frames" hidden><div class="frames">${frames}</div></div>
+      </section>
+
+      <section class="panel">
+        <h3>2 · Query</h3>
+        <div class="ctx">
+          <img class="sim" src="${dir + it.query}" alt="Query">
+          <p class="prose">${esc(it.prompt.question)}</p>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h3>3 · Candidates <span class="sub">${mine == null && !show ? "click the one you think is right" : `answer: ${it.answer}`}</span></h3>
+        <div class="options">${options}</div>
+      </section>
+
+      ${show ? `<section class="panel"><h3>Physics behind each candidate</h3>${paramTable(it)}</section>` : ""}
+      ${modelPanel}
+    `;
+
+    $("#prev").onclick = () => step(-1);
+    $("#next").onclick = () => step(1);
+    document.querySelectorAll(".tabs button").forEach((b) => b.onclick = () => {
+      document.querySelectorAll(".tabs button").forEach((x) => x.setAttribute("aria-selected", x === b));
+      document.querySelectorAll("[data-pane]").forEach((p) => p.hidden = p.dataset.pane !== b.dataset.tab);
+    });
+    document.querySelectorAll(".opt").forEach((card) => {
+      card.onclick = (e) => {
+        if (e.target.closest(".play")) return;
+        answer(card.dataset.letter);
+      };
+      card.onkeydown = (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); answer(card.dataset.letter); } };
+    });
+    document.querySelectorAll(".play").forEach((b) => b.onclick = () => {
+      const img = b.closest(".opt").querySelector("img");
+      const playing = img.src.endsWith(".gif");
+      img.src = playing ? img.dataset.png : img.dataset.gif + "?t=" + Date.now();
+      b.textContent = playing ? "Play rollout" : "Show still";
+    });
+  }
+
+  function answer(letter) {
+    if (!current || picks[current.id] != null) return;
+    picks[current.id] = letter; savePicks();
+    renderScore(); renderRail(); renderItem();
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.target.matches("input, textarea") || e.metaKey || e.ctrlKey || e.altKey) return;
+    const k = e.key.toUpperCase();
+    if ("ABCDE".includes(k) && k.length === 1) answer(k);
+    else if (e.key === "ArrowRight" || e.key === "j") step(1);
+    else if (e.key === "ArrowLeft" || e.key === "k") step(-1);
+  });
+  $("#revealAll").onchange = () => renderItem();
+  $("#resetScore").onclick = () => { picks = {}; savePicks(); renderScore(); renderRail(); renderItem(); };
+  window.addEventListener("hashchange", () => {
+    const it = items.find((i) => hashOf(i.id) === location.hash.slice(1));
+    if (it && it !== current) go(it);
+  });
+
+  load().then((rows) => {
+    items = rows || [];
+    if (!items.length) {
+      $("#main").innerHTML = `<div class="panel empty">No items found. Run <code>python -m weirdphys.generate</code> to create <code>data/</code>, then reload.</div>`;
+      return;
+    }
+    renderChips(); renderScore();
+    const fromHash = items.find((i) => hashOf(i.id) === location.hash.slice(1));
+    go(fromHash || items[0]);
+  });
+})();
+</script>

@@ -1,0 +1,17 @@
+[project]
+name = "weirdphys"
+version = "0.1.0"
+description = "Weird Physics Bench: in-context learning of unfamiliar simulated physics"
+requires-python = ">=3.10"
+dependencies = ["numpy", "pillow>=10.1", "pymunk>=6.6", "anthropic>=1.0"]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["weirdphys", "weirdphys.tasks"]
+
+[tool.ruff]
+line-length = 140
+target-version = "py310"

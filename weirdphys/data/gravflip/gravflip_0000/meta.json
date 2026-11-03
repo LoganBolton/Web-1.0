@@ -1,0 +1,419 @@
+{
+ "id": "gravflip_0000",
+ "task": "gravflip",
+ "answer": "D",
+ "world": {
+  "gravity_dir_deg": -45.0,
+  "gravity_dir_name": "down-right",
+  "g": 58.579,
+  "elasticity": 0.67,
+  "friction": 0.15
+ },
+ "setup": {
+  "demo_shapes": [
+   {
+    "kind": "box",
+    "pos": [
+     8.399,
+     4.737
+    ],
+    "angle": 0.0,
+    "color": [
+     230,
+     85,
+     70
+    ],
+    "verts": [
+     [
+      -1.194,
+      -0.862
+     ],
+     [
+      1.194,
+      -0.862
+     ],
+     [
+      1.194,
+      0.862
+     ],
+     [
+      -1.194,
+      0.862
+     ]
+    ]
+   },
+   {
+    "kind": "box",
+    "pos": [
+     9.061,
+     7.277
+    ],
+    "angle": 0.0,
+    "color": [
+     60,
+     130,
+     220
+    ],
+    "verts": [
+     [
+      -1.432,
+      -1.012
+     ],
+     [
+      1.432,
+      -1.012
+     ],
+     [
+      1.432,
+      1.012
+     ],
+     [
+      -1.432,
+      1.012
+     ]
+    ]
+   },
+   {
+    "kind": "circle",
+    "pos": [
+     8.56,
+     9.664
+    ],
+    "angle": 0.099,
+    "color": [
+     245,
+     175,
+     40
+    ],
+    "radius": 0.953
+   },
+   {
+    "kind": "circle",
+    "pos": [
+     8.689,
+     11.671
+    ],
+    "angle": 0.173,
+    "color": [
+     80,
+     175,
+     100
+    ],
+    "radius": 0.934
+   },
+   {
+    "kind": "circle",
+    "pos": [
+     8.88,
+     13.791
+    ],
+    "angle": 3.716,
+    "color": [
+     160,
+     95,
+     200
+    ],
+    "radius": 1.066
+   },
+   {
+    "kind": "circle",
+    "pos": [
+     8.452,
+     15.616
+    ],
+    "angle": 2.942,
+    "color": [
+     240,
+     125,
+     175
+    ],
+    "radius": 0.639
+   },
+   {
+    "kind": "box",
+    "pos": [
+     8.843,
+     17.076
+    ],
+    "angle": 0.0,
+    "color": [
+     40,
+     175,
+     190
+    ],
+    "verts": [
+     [
+      -0.564,
+      -0.745
+     ],
+     [
+      0.564,
+      -0.745
+     ],
+     [
+      0.564,
+      0.745
+     ],
+     [
+      -0.564,
+      0.745
+     ]
+    ]
+   }
+  ],
+  "query_shapes": [
+   {
+    "kind": "box",
+    "pos": [
+     13.169,
+     9.477
+    ],
+    "angle": 4.886,
+    "color": [
+     230,
+     85,
+     70
+    ],
+    "verts": [
+     [
+      -1.15,
+      -0.538
+     ],
+     [
+      1.15,
+      -0.538
+     ],
+     [
+      1.15,
+      0.538
+     ],
+     [
+      -1.15,
+      0.538
+     ]
+    ]
+   },
+   {
+    "kind": "triangle",
+    "pos": [
+     8.568,
+     6.857
+    ],
+    "angle": 6.121,
+    "color": [
+     60,
+     130,
+     220
+    ],
+    "verts": [
+     [
+      -1.147,
+      0.119
+     ],
+     [
+      0.47,
+      -1.053
+     ],
+     [
+      0.677,
+      0.933
+     ]
+    ]
+   },
+   {
+    "kind": "triangle",
+    "pos": [
+     8.125,
+     12.0
+    ],
+    "angle": 0.879,
+    "color": [
+     245,
+     175,
+     40
+    ],
+    "verts": [
+     [
+      0.557,
+      0.875
+     ],
+     [
+      -1.036,
+      0.045
+     ],
+     [
+      0.479,
+      -0.92
+     ]
+    ]
+   },
+   {
+    "kind": "triangle",
+    "pos": [
+     6.026,
+     15.295
+    ],
+    "angle": 4.878,
+    "color": [
+     80,
+     175,
+     100
+    ],
+    "verts": [
+     [
+      0.655,
+      -1.18
+     ],
+     [
+      0.694,
+      1.157
+     ],
+     [
+      -1.349,
+      0.023
+     ]
+    ]
+   },
+   {
+    "kind": "circle",
+    "pos": [
+     8.735,
+     3.416
+    ],
+    "angle": 0.308,
+    "color": [
+     160,
+     95,
+     200
+    ],
+    "radius": 0.927
+   }
+  ],
+  "t_levitate": 0.6,
+  "t_demo_after": 2.6,
+  "t_query": 1.5
+ },
+ "prompt": {
+  "intro": "This is a 2D simulated world inside a closed box with solid walls. Its physics may be very different from Earth's. Gravity starts switched off so the shapes float, then it switches on, but it can point in any direction (sideways, up, diagonal) and can be weak or strong. How bouncy and how slippery things are is also unknown. Grid squares are 1 m. You are shown a demo video of some shapes floating and then gravity switching on.",
+  "question": "The query image shows a new set of floating shapes in the same world. Gravity will switch on exactly as it did in the demo. Which candidate shows the scene 1.5 s after gravity switches on? In the candidates, faint outlines mark where each shape started and thin lines trace the path of each shape's center."
+ },
+ "context": {
+  "video_gif": "context.gif",
+  "video_mp4": "context.mp4",
+  "fps": 20,
+  "n_frames": 65,
+  "summary": "context_summary.png",
+  "keyframes": [
+   {
+    "path": "frames/ctx_00.png",
+    "caption": "t = 0.00 s, gravity off"
+   },
+   {
+    "path": "frames/ctx_01.png",
+    "caption": "gravity on for 0.15 s"
+   },
+   {
+    "path": "frames/ctx_02.png",
+    "caption": "gravity on for 0.55 s"
+   },
+   {
+    "path": "frames/ctx_03.png",
+    "caption": "gravity on for 0.95 s"
+   },
+   {
+    "path": "frames/ctx_04.png",
+    "caption": "gravity on for 1.35 s"
+   },
+   {
+    "path": "frames/ctx_05.png",
+    "caption": "gravity on for 1.80 s"
+   },
+   {
+    "path": "frames/ctx_06.png",
+    "caption": "gravity on for 2.20 s"
+   },
+   {
+    "path": "frames/ctx_07.png",
+    "caption": "gravity on for 2.60 s"
+   }
+  ]
+ },
+ "query": "query.png",
+ "options": [
+  {
+   "letter": "A",
+   "image": "option_A.png",
+   "rollout_gif": "option_A.gif",
+   "label": "dir_rot_ccw45",
+   "desc": "gravity rotated 45 deg counter-clockwise",
+   "params": {
+    "gravity_dir_deg": 0.0,
+    "gravity_dir_name": "down-right",
+    "g": 58.579,
+    "elasticity": 0.67,
+    "friction": 0.15
+   },
+   "correct": false
+  },
+  {
+   "letter": "B",
+   "image": "option_B.png",
+   "rollout_gif": "option_B.gif",
+   "label": "dir_opposite",
+   "desc": "gravity pointing the opposite way",
+   "params": {
+    "gravity_dir_deg": 135.0,
+    "gravity_dir_name": "down-right",
+    "g": 58.579,
+    "elasticity": 0.67,
+    "friction": 0.15
+   },
+   "correct": false
+  },
+  {
+   "letter": "C",
+   "image": "option_C.png",
+   "rollout_gif": "option_C.gif",
+   "label": "ordinary_physics",
+   "desc": "ordinary physics: gravity straight down at 9.8 m/s^2",
+   "params": {
+    "gravity_dir_deg": -90.0,
+    "gravity_dir_name": "down",
+    "g": 9.81,
+    "elasticity": 0.2,
+    "friction": 0.6
+   },
+   "correct": false
+  },
+  {
+   "letter": "D",
+   "image": "option_D.png",
+   "rollout_gif": "option_D.gif",
+   "label": "true",
+   "desc": "the world's real physics",
+   "params": {
+    "gravity_dir_deg": -45.0,
+    "gravity_dir_name": "down-right",
+    "g": 58.579,
+    "elasticity": 0.67,
+    "friction": 0.15
+   },
+   "correct": true
+  },
+  {
+   "letter": "E",
+   "image": "option_E.png",
+   "rollout_gif": "option_E.gif",
+   "label": "dir_rot_cw90",
+   "desc": "gravity rotated 90 deg clockwise",
+   "params": {
+    "gravity_dir_deg": -135.0,
+    "gravity_dir_name": "down-right",
+    "g": 58.579,
+    "elasticity": 0.67,
+    "friction": 0.15
+   },
+   "correct": false
+  }
+ ]
+}
